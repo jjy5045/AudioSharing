@@ -1,5 +1,3 @@
 # SharingAudio
 
-Android Studio
-STS4
-MySQL
+Android Studio / STS4 / MySQL

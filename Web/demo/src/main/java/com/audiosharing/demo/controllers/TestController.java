@@ -1,4 +1,4 @@
-package com.audiosharing.demo;
+package com.audiosharing.demo.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,3 +11,4 @@ public class TestController {
     return "demo project!!";
   }
 }
+

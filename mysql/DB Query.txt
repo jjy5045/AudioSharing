@@ -1,0 +1,134 @@
+﻿-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+-- PRODUCT_LIST Table Create SQL
+CREATE TABLE PRODUCT_LIST
+(
+    `pro_list_id`          INT            NOT NULL    AUTO_INCREMENT COMMENT '제품 목록 번호', 
+    `pro_list_type`        VARCHAR(45)    NULL        COMMENT '제품 타입', 
+    `pro_list_name`        VARCHAR(45)    NULL        COMMENT '제품 이름', 
+    `pro_list_company`     VARCHAR(45)    NULL        COMMENT '제품 회사', 
+    `pro_list_text`        VARCHAR(45)    NULL        COMMENT '제품 설명', 
+    `pro_list_price`       INT            NULL        COMMENT '제품 가격', 
+    `pro_list_rent_price`  INT            NULL        COMMENT '제품 이용 가격', 
+     PRIMARY KEY (pro_list_id)
+);
+
+ALTER TABLE PRODUCT_LIST COMMENT '제품 목록';
+
+
+-- STATION_LIST Table Create SQL
+CREATE TABLE STATION_LIST
+(
+    `stn_id`        INT            NOT NULL    AUTO_INCREMENT COMMENT '스테이션 번호', 
+    `stn_name`      VARCHAR(45)    NULL        COMMENT '스테이션 이름', 
+    `stn_location`  VARCHAR(45)    NULL        COMMENT '스테이션 위치', 
+    `stn_img`       VARCHAR(45)    NULL        COMMENT '스테이션 사진', 
+     PRIMARY KEY (stn_id)
+);
+
+ALTER TABLE STATION_LIST COMMENT '스테이션';
+
+
+-- USER Table Create SQL
+CREATE TABLE USER
+(
+    `user_id`      INT             NOT NULL    AUTO_INCREMENT COMMENT '유저 번호', 
+    `user_mail`    VARCHAR(100)    NULL        COMMENT '유저 메일', 
+    `user_name`    VARCHAR(50)     NULL        COMMENT '유저 이름', 
+    `user_tel`     VARCHAR(15)     NULL        COMMENT '유저 연락처', 
+    `user_passwd`  VARCHAR(45)     NULL        COMMENT '유저 패스워드', 
+    `user_sex`     CHAR(1)         NULL        COMMENT '유저 성별', 
+    `user_del`     TINYINT         NULL        COMMENT '유저 탈퇴', 
+    `user_birth`   VARCHAR(6)      NULL        COMMENT '유저 나이', 
+     PRIMARY KEY (user_id)
+);
+
+ALTER TABLE USER COMMENT '사용자';
+
+
+-- PRODUCT_DETAIL Table Create SQL
+CREATE TABLE PRODUCT_DETAIL
+(
+    `pro_detail_id`      INT             NOT NULL    AUTO_INCREMENT COMMENT '제품 개별 번호', 
+    `pro_detail_number`  VARCHAR(50)     NULL        COMMENT '제품 개별 일련 번호', 
+    `pro_detail_QR`      VARCHAR(100)    NULL        COMMENT '제품 개별 QR코드', 
+    `pro_detail_date`    TIMESTAMP       NULL        COMMENT '제품 개별 등록 날짜', 
+    `pro_list_id`        INT             NULL        COMMENT '제품 목록 번호', 
+     PRIMARY KEY (pro_detail_id)
+);
+
+ALTER TABLE PRODUCT_DETAIL COMMENT '제품 개별 상세';
+
+ALTER TABLE PRODUCT_DETAIL
+    ADD CONSTRAINT FK_PRODUCT_DETAIL_pro_list_id_PRODUCT_LIST_pro_list_id FOREIGN KEY (pro_list_id)
+        REFERENCES PRODUCT_LIST (pro_list_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- PRODUCT_RENT Table Create SQL
+CREATE TABLE PRODUCT_RENT
+(
+    `user_id`             INT             NOT NULL    COMMENT '유저 번호', 
+    `pro_detail_id`       INT             NOT NULL    COMMENT '제품 번호', 
+    `rent_start_time`     TIMESTAMP       NULL        COMMENT '대여 시작 시간', 
+    `rent_end_time`       TIMESTAMP       NULL        COMMENT '대여 종료 시간', 
+    `rent_time`           INT             NULL        COMMENT '대여 시간 선텍', 
+    `rent_price`          INT             NULL        COMMENT '결제 금액', 
+    `rent_price2`         INT             NULL        COMMENT '추가 결제 금액', 
+    `rent_boolean`        CHAR(1)         NULL        COMMENT '결제 완료여부', 
+    `rent_review_sound`   INT             NULL        COMMENT '리뷰 음질', 
+    `rent_review_fit`     INT             NULL        COMMENT '리뷰 착용감', 
+    `rent_review_design`  INT             NULL        COMMENT '리뷰 디자인', 
+    `rent_review_body`    VARCHAR(200)    NULL        COMMENT '리뷰 상세', 
+     PRIMARY KEY (user_id, pro_detail_id)
+);
+
+ALTER TABLE PRODUCT_RENT COMMENT '대여';
+
+ALTER TABLE PRODUCT_RENT
+    ADD CONSTRAINT FK_PRODUCT_RENT_user_id_USER_user_id FOREIGN KEY (user_id)
+        REFERENCES USER (user_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE PRODUCT_RENT
+    ADD CONSTRAINT FK_PRODUCT_RENT_pro_detail_id_PRODUCT_DETAIL_pro_detail_id FOREIGN KEY (pro_detail_id)
+        REFERENCES PRODUCT_DETAIL (pro_detail_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- PRODUCT_IMAGE Table Create SQL
+CREATE TABLE PRODUCT_IMAGE
+(
+    `file_id`          INT             NOT NULL    AUTO_INCREMENT COMMENT '파일 번호', 
+    `file_name`        VARCHAR(100)    NULL        COMMENT '파일 이름', 
+    `file_real_name`   VARCHAR(100)    NULL        COMMENT '파일 원본 이름', 
+    `file_saved_name`  VARCHAR(100)    NULL        COMMENT '파일 저장된 이름', 
+    `file_path`        VARCHAR(200)    NULL        COMMENT '파일 저장 경로', 
+    `pro_list_id`      INT             NULL        COMMENT '제품 목록 번호', 
+     PRIMARY KEY (file_id)
+);
+
+ALTER TABLE PRODUCT_IMAGE COMMENT '제품 사진';
+
+ALTER TABLE PRODUCT_IMAGE
+    ADD CONSTRAINT FK_PRODUCT_IMAGE_pro_list_id_PRODUCT_LIST_pro_list_id FOREIGN KEY (pro_list_id)
+        REFERENCES PRODUCT_LIST (pro_list_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- DISPLAY Table Create SQL
+CREATE TABLE DISPLAY
+(
+    `dis_number`     VARCHAR(45)    NOT NULL    COMMENT '진열대 번호', 
+    `stn_id`         INT            NOT NULL    COMMENT '스테이션 번호', 
+    `pro_detail_id`  INT            NOT NULL    COMMENT '제품 번호', 
+     PRIMARY KEY (dis_number)
+);
+
+ALTER TABLE DISPLAY COMMENT '진열대';
+
+ALTER TABLE DISPLAY
+    ADD CONSTRAINT FK_DISPLAY_stn_id_STATION_LIST_stn_id FOREIGN KEY (stn_id)
+        REFERENCES STATION_LIST (stn_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE DISPLAY
+    ADD CONSTRAINT FK_DISPLAY_pro_detail_id_PRODUCT_DETAIL_pro_detail_id FOREIGN KEY (pro_detail_id)
+        REFERENCES PRODUCT_DETAIL (pro_detail_id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+

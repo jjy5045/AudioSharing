@@ -4,10 +4,10 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ProductListValue {
-	private String pro_list_type;
-	private String pro_list_name;
-	private String pro_list_company;
-	private String pro_list_text;
-	private String pro_list_price;
-	private String pro_list_rent_price;
+	private String proListType;
+	private String proListName;
+	private String proListCompany;
+	private String proListText;
+	private String proListPrice;
+	private String proListRentPrice;
 }

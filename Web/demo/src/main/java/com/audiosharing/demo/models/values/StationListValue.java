@@ -4,7 +4,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class StationListValue {
-	private String stn_id;
-	private String stn_name;
-	private String stn_img;
+	private String stnId;
+	private String stnName;
+	private String stnImg;
 }

@@ -36,34 +36,34 @@ public class StationList implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long stn_id;
+	private Long stnId;
 	
 	@Column(nullable = false, length = 45)
-	private String stn_name;
+	private String stnName;
 	
 	@Column(nullable = false, length = 45)
-	private String stn_location;
+	private String stnLocation;
 	
 	@Column(nullable = false, length = 45)
-	private String stn_img;
+	private String stnImg;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date stn_createTimestamp;
+	private Date stnCreateTimestamp;
 	
 	
 	
 	
 	@PrePersist
 	protected void onCreate() {
-		stn_createTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		stnCreateTimestamp = Timestamp.valueOf(LocalDateTime.now());
 	}
 	
 	
 	@Builder
-	public StationList(String stn_name, String stn_location, String stn_img) {
-		this.stn_name = stn_name;
-		this.stn_location = stn_location;
-		this.stn_img = stn_img;
+	public StationList(String stnName, String stnLocation, String stnImg) {
+		this.stnName = stnName;
+		this.stnLocation = stnLocation;
+		this.stnImg = stnImg;
 	}
 }

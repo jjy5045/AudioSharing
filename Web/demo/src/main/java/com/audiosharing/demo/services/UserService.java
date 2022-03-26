@@ -21,43 +21,43 @@ public class UserService {
 	}
 
 	@Transactional(readOnly = true)
-	public Optional<User> findById(Long id) {
-		return userRepository.findById(id);
+	public Optional<User> findByUserId(Long id) {
+		return userRepository.findByUserId(id);
 	}
 	
 	@Transactional
 	public User save(UserValue value) {
 		User user = User.builder()
-				.type(value.getType())
-				.email(value.getEmail())
-				.birthDate(value.getBirthDate())
-				.name(value.getName())
-				.password(value.getPassword())
-				.phoneNumber(value.getPhoneNumber())
-				.sex(value.getSex()).build();
+				.userType(value.getUserType())
+				.userEmail(value.getUserEmail())
+				.userBirth(value.getUserBirth())
+				.userName(value.getUserName())
+				.userPassword(value.getUserPassword())
+				.userTel(value.getUserTel())
+				.userSex(value.getUserSex()).build();
 
 		return userRepository.save(user);
 	}
 
 	@Transactional
 	public int patch(long id, UserValue value) {
-		Optional<User> oUser = userRepository.findById(id);
+		Optional<User> oUser = userRepository.findByUserId(id);
 		if(oUser.isPresent()) {
 			User user = oUser.get();
-			if(StringUtils.isNotBlank(value.getType()))
-				user.setType(value.getType());
-			if(StringUtils.isNotBlank(value.getEmail()))
-				user.setEmail(value.getEmail());
-			if(StringUtils.isNotBlank(value.getBirthDate()))
-				user.setBirthDate(value.getBirthDate());
-			if(StringUtils.isNotBlank(value.getName()))
-				user.setName(value.getName());
-			if(StringUtils.isNotBlank(value.getPassword()))
-				user.setPassword(value.getPassword());
-			if(StringUtils.isNotBlank(value.getPhoneNumber()))
-				user.setPhoneNumber(value.getPhoneNumber());
-			if(StringUtils.isNotBlank(value.getSex()))
-				user.setSex(value.getSex());
+			if(StringUtils.isNotBlank(value.getUserType()))
+				user.setUserType(value.getUserType());
+			if(StringUtils.isNotBlank(value.getUserEmail()))
+				user.setUserEmail(value.getUserEmail());
+			if(StringUtils.isNotBlank(value.getUserBirth()))
+				user.setUserBirth(value.getUserBirth());
+			if(StringUtils.isNotBlank(value.getUserName()))
+				user.setUserName(value.getUserName());
+			if(StringUtils.isNotBlank(value.getUserPassword()))
+				user.setUserPassword(value.getUserPassword());
+			if(StringUtils.isNotBlank(value.getUserTel()))
+				user.setUserTel(value.getUserTel());
+			if(StringUtils.isNotBlank(value.getUserSex()))
+				user.setUserSex(value.getUserSex());
 			userRepository.save(user);
 			return 1;
 		}
@@ -66,7 +66,7 @@ public class UserService {
 
 	@Transactional
 	public int delete(long id) {
-		Optional<User> oUser = userRepository.findById(id);
+		Optional<User> oUser = userRepository.findByUserId(id);
 		if(oUser.isPresent()) {
 			userRepository.delete(oUser.get());
 			return 1;

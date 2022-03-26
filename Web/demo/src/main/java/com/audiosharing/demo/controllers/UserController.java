@@ -28,10 +28,10 @@ public class UserController {
 	private final UserService userService;
 
 	@GetMapping("/{id}")
-	public Map<String, Object> findById(@PathVariable("id") long id) {
+	public Map<String, Object> findByUserId(@PathVariable("id") long id) {
 		Map<String, Object> response = new HashMap<>();
 
-		Optional<User> oUser = userService.findById(id);
+		Optional<User> oUser = userService.findByUserId(id);
 		if (oUser.isPresent()) {
 			response.put("result", "SUCCESS");
 			response.put("user", oUser.get());

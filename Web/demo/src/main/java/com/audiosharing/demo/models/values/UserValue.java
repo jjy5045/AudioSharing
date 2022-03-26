@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter @Setter
 public class UserValue {
-	private String type;
-	private String email;
-	private String name;
-	private String sex;
-	private String birthDate;
-	private String phoneNumber;
-	private String password;
+	private String userType;
+	private String userEmail;
+	private String userName;
+	private String userSex;
+	private String userBirth;
+	private String userTel;
+	private String userPassword;
 }

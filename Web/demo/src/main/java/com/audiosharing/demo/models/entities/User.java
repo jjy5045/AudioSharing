@@ -35,59 +35,59 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long id;
+	private Long userId;
 
 	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1) DEFAULT '0'")
-	private String type;
+	private String userType;
 
 	@Column(nullable = false, unique = true, length = 100)
-	private String email;
+	private String userEmail;
 
 	@Column(nullable = false, length = 50)
-	private String name;
+	private String userName;
 
 	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1) DEFAULT '1'")
-	private String sex;
+	private String userSex;
 
 	@Column(nullable = false, length = 6)
-	private String birthDate;
+	private String userBirth;
 
 	@Column(nullable = false, length = 20)
-	private String phoneNumber;
+	private String userTel;
 
 	@Column(nullable = false, length = 150)
-	private String password;
+	private String userPassword;
 
 	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0", length = 1)
-	private boolean del;
+	private boolean userDel;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date createTimestamp;
+	private Date userCreateTimestamp;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = true, columnDefinition = "TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP")
-	protected Date updateTimestamp;
+	protected Date userUpdateTimestamp;
 
 	@PrePersist
 	protected void onCreate() {
-		createTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		userCreateTimestamp = Timestamp.valueOf(LocalDateTime.now());
 	}
 
 	@PreUpdate
 	protected void onUpdate() {
-		updateTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		userUpdateTimestamp = Timestamp.valueOf(LocalDateTime.now());
 	}
 	
 	@Builder
-	public User(String type, String name, String email, String sex,
-			String birthDate, String phoneNumber, String password) {
-		this.type = type;
-		this.name = name;
-		this.email = email;
-		this.sex = sex;
-		this.birthDate = birthDate;
-		this.phoneNumber = phoneNumber;
-		this.password = password;
+	public User(String userType, String userName, String userEmail, String userSex,
+			String userBirth, String userTel, String userPassword) {
+		this.userType = userType;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userSex = userSex;
+		this.userBirth = userBirth;
+		this.userTel= userTel;
+		this.userPassword = userPassword;
 	}	
 }

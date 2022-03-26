@@ -38,42 +38,42 @@ public class ProductDetail implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long pro_detail_id;
+	private Long proDetailId;
 	
 	//제품 개별 일련 번호
 	@Column(nullable = false, length = 50)
-	private String pro_detail_number;
+	private String proDetailNumber;
 	
 	//제품 개별 QR 코드
 	@Column(nullable = false, length = 100)
-	private String pro_detail_QR;
+	private String proDetailQR;
 	
 	//제품 개별 등록 날짜
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date pro_detail_date;
+	private Date proDetailDate;
 	
 	//제품 목록 번호
 	@ManyToOne
-	@JoinColumn(name="pro_list_id")
+	@JoinColumn(name="proListId")
     private ProductList productList;
 	
 	//스테이션 번호
 	@OneToOne
-	@JoinColumn(name="stn_id")
+	@JoinColumn(name="stnId")
 	private StationList stationList;
 	
 
 	
 	@PrePersist
 	protected void onCreate() {
-		pro_detail_date = Timestamp.valueOf(LocalDateTime.now());
+		proDetailDate = Timestamp.valueOf(LocalDateTime.now());
 	}
 	
 	@Builder
-	public ProductDetail(String pro_detail_number, String pro_detail_QR, String pro_detail_date) {
-		this.pro_detail_number = pro_detail_number;
-		this.pro_detail_QR = pro_detail_QR;
+	public ProductDetail(String proDetailNumber, String pro_detail_QR, String pro_detail_date) {
+		this.proDetailNumber = proDetailNumber;
+		this.proDetailQR = proDetailQR;
 	}
 
 }

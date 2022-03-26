@@ -33,43 +33,43 @@ public class ProductList implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long pro_list_id;
+	private Long proList_id;
 	
 	//제품 타입
 	@Column(nullable = false, length = 45)
-	private String pro_list_type;
+	private String proList_type;
 	
 	//제품 이름
 	@Column(nullable = false, length = 45)
-	private String pro_list_name;
+	private String proList_name;
 	
 	//제품 회사
 	@Column(nullable = false, length = 45)
-	private String pro_list_company;
+	private String proListCompany;
 	
 	//제품 설명
 	@Column(nullable = false, length = 45)
-	private String pro_list_text;
+	private String proListText;
 	
 	//제품 가격
 	@Column(nullable = false, length = 45)
-	private String pro_list_price;
+	private String proListPrice;
 	
 	//제품 이용 가격
 	@Column(nullable = false, length = 45)
-	private String pro_list_rent_price;
+	private String proListRentPrice;
 	
 	
 	
 	@Builder
-	public ProductList(String pro_list_type, String pro_list_name, String pro_list_company, String pro_list_text,
-			String pro_list_price, String pro_list_rent_price) {
-		this.pro_list_type = pro_list_type;
-		this.pro_list_name = pro_list_name;
-		this.pro_list_company = pro_list_company;
-		this.pro_list_text = pro_list_text;
-		this.pro_list_price = pro_list_price;
-		this.pro_list_rent_price = pro_list_rent_price;
+	public ProductList(String proList_type, String proList_name, String proListCompany, String proListText,
+			String proListPrice, String proListRentPrice) {
+		this.proList_type = proList_type;
+		this.proList_name = proList_name;
+		this.proListCompany = proListCompany;
+		this.proListText = proListText;
+		this.proListPrice = proListPrice;
+		this.proListRentPrice = proListRentPrice;
 		
 	}
 }

@@ -11,6 +11,8 @@ import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.UserValue;
 import com.audiosharing.demo.repositories.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserService {
 	private final UserRepository userRepository;
@@ -72,5 +74,11 @@ public class UserService {
 			return 1;
 		}
 		return 0;
+	}
+	
+	@Transactional
+	public List<User> findAll() {
+		List<User> userList = this.userRepository.findAll();
+		return userList;
 	}
 }

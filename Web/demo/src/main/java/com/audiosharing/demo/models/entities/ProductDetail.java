@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -71,9 +72,12 @@ public class ProductDetail implements Serializable {
 	}
 	
 	@Builder
-	public ProductDetail(String proDetailNumber, String pro_detail_QR, String pro_detail_date) {
+	public ProductDetail(String proDetailNumber, String proDetailQR, ProductList productList,
+			StationList stationList) {
 		this.proDetailNumber = proDetailNumber;
 		this.proDetailQR = proDetailQR;
+		this.productList = productList;
+		this.stationList = stationList;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.audiosharing.demo.models.entities;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -21,6 +23,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
@@ -33,39 +36,42 @@ public class ProductList implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
-	private Long proList_id;
+	private Long proListId;
 	
 	//제품 타입
-	@Column(nullable = false, length = 45)
-	private String proList_type;
+	@Column(nullable = false, length = 10)
+	private String proListType;
 	
 	//제품 이름
-	@Column(nullable = false, length = 45)
-	private String proList_name;
+	@Column(nullable = false, length = 30)
+	private String proListName;
 	
 	//제품 회사
-	@Column(nullable = false, length = 45)
+	@Column(nullable = false, length = 30)
 	private String proListCompany;
 	
 	//제품 설명
-	@Column(nullable = false, length = 45)
+	@Column(nullable = false, length = 100)
 	private String proListText;
 	
 	//제품 가격
-	@Column(nullable = false, length = 45)
+	@Column(nullable = false, length = 20)
 	private String proListPrice;
 	
 	//제품 이용 가격
-	@Column(nullable = false, length = 45)
+	@Column(nullable = false, length = 20)
 	private String proListRentPrice;
+	
+	@OneToMany(mappedBy = "productList")
+	private List<ProductDetail> productDetails = new ArrayList<>();
 	
 	
 	
 	@Builder
-	public ProductList(String proList_type, String proList_name, String proListCompany, String proListText,
+	public ProductList(String proListType, String proListName, String proListCompany, String proListText,
 			String proListPrice, String proListRentPrice) {
-		this.proList_type = proList_type;
-		this.proList_name = proList_name;
+		this.proListType = proListType;
+		this.proListName = proListName;
 		this.proListCompany = proListCompany;
 		this.proListText = proListText;
 		this.proListPrice = proListPrice;

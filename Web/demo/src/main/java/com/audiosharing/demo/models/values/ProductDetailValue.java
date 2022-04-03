@@ -11,6 +11,7 @@ public class ProductDetailValue {
 	private String proDetailNumber;
 	private String proDetailQR;
 	private ProductList productList;
-	private long proListId;
-	//private StationList stationList;
+	private StationList stationList;
+	
+	//private long proListId;
 }

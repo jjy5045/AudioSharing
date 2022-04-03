@@ -20,18 +20,14 @@ import java.util.List;
 public class ProductDetailService {
 	private final ProductDetailRepository productDetailRepository;
 	
-	private final ProductListRepository productListRepository;
+	
 	
 	@Autowired
 	public ProductDetailService(ProductDetailRepository productDetailRepository) {
 		this.productDetailRepository = productDetailRepository;
 	}
 	
-	@Autowired
-	public ProductListRepository(ProductListRepository productListRepository) {
-		this.productListRepository = productListRepository;
-	}
-	
+
 	
 	@Transactional
 	public List<ProductDetail> findAll() {
@@ -43,7 +39,7 @@ public class ProductDetailService {
 	public ProductDetail save(ProductDetailValue value) {
 		//long a = value.getProListId();
 		//if(productListRepository.findByProListId(value.getProListId())) 
-		
+		/*
 		if(productListRepository.findByProListId(value.getProListId()) != null)
 		{
 			ProductDetail productDetail = ProductDetail.builder()
@@ -55,13 +51,15 @@ public class ProductDetailService {
 		} else {
 			return null;
 		}
+		*/
 		
-		/*
 		ProductDetail productDetail = ProductDetail.builder()
+				.stationList(value.getStationList())
+				.productList(value.getProductList())
 				.proDetailNumber(value.getProDetailNumber())
 				.proDetailQR(value.getProDetailQR()).build();
 		
 		return productDetailRepository.save(productDetail);
-		*/
+		
 	}
 }

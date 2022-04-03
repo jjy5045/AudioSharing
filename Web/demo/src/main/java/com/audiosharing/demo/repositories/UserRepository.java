@@ -11,6 +11,7 @@ import com.audiosharing.demo.models.entities.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	Optional<User> findByUserId(Long id);
+	Optional<User> findByUserEmailAndUserPassword(String Email, String password);
 	List<User> findAllByUserNameContains(String name);
 	List<User> findAll();
 }

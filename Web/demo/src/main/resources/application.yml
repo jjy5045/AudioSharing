@@ -29,5 +29,9 @@ spring:
     #generate-ddl: false
     generate-ddl: true
     open-in-view: false
-    
+  server:
+    servlet:
+      session:
+        tracking-modes: cookie
+        cookie.name: TESTSSESSTION
   

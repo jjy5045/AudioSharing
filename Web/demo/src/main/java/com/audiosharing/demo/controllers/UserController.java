@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +17,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.audiosharing.demo.models.entities.StationList;
 import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.UserValue;
 import com.audiosharing.demo.services.UserService;
+import com.audiosharing.demo.util.LoginType;
 
 import lombok.RequiredArgsConstructor;
+
 
 @RequiredArgsConstructor
 @RequestMapping(value = "/users", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -45,7 +51,26 @@ public class UserController {
 		return response;
 	}
 	
+	@GetMapping("/session")
+	public Map<String, Object> findByUserId(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser, HttpSession session) {
+		Map<String, Object> response = new HashMap<>();
+		
+		if(oUser.isEmpty()) {
+			response.put("일치하지 않음", "FAIL");
+			return response;
+		} else {
+			Optional<User> User = userService.findByUserId(oUser.get().getUserId());
+			response.put("result", "SUCCESS");
+			response.put("user", User.get());
+			response.put("session.getId()", session.getId());
+			
+			return response;
+		}
+	}
+	
 	@GetMapping("/all")
+	///@LoginCheck(type = LoginCheck.UserType.USER)
+	@LoginType(type = LoginType.UserType.USER)
 	public Map<String, Object> findAll() {
 		Map<String, Object> response = new HashMap<>();
 		

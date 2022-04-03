@@ -27,6 +27,11 @@ public class UserService {
 		return userRepository.findByUserId(id);
 	}
 	
+	@Transactional(readOnly = true)
+	public Optional<User> findByUserEmailAndUserPassword(String Email, String password) {
+		return userRepository.findByUserEmailAndUserPassword(Email, password);
+	}
+	
 	@Transactional
 	public User save(UserValue value) {
 		User user = User.builder()

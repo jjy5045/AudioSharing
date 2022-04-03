@@ -35,7 +35,7 @@ public class StationController {
 		Optional<StationList> oStationList = stationListSerivce.findByStnId(id);
 		if (oStationList.isPresent()) {
 			response.put("result", "SUCCESS");
-			response.put("user", oStationList.get());
+			response.put("station", oStationList.get());
 		} else {
 			response.put("result", "FAIL");
 			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");

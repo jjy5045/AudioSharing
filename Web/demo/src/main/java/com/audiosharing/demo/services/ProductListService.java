@@ -11,6 +11,8 @@ import com.audiosharing.demo.models.entities.ProductDetail;
 import com.audiosharing.demo.models.entities.ProductList;
 import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.ProductDetailValue;
+import com.audiosharing.demo.models.values.ProductListValue;
+import com.audiosharing.demo.models.values.UserValue;
 import com.audiosharing.demo.repositories.ProductDetailRepository;
 import com.audiosharing.demo.repositories.ProductListRepository;
 
@@ -30,4 +32,22 @@ public class ProductListService {
 		return productListRepository.findByProListId(id);
 	}
 	
+	@Transactional
+	public List<ProductList> findAll() {
+		List<ProductList> ProductList= this.productListRepository.findAll();
+		return ProductList;
+	}
+	
+	@Transactional
+	public ProductList save(ProductListValue value) {
+		ProductList productList = ProductList.builder()
+				.proListType(value.getProListType())
+				.proListName(value.getProListName())
+				.proListCompany(value.getProListCompany())
+				.proListText(value.getProListText())
+				.proListRentPrice(value.getProListRentPrice())
+				.proListPrice(value.getProListPrice()).build();
+
+		return productListRepository.save(productList);
+	}
 }

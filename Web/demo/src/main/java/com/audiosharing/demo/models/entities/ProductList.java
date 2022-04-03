@@ -62,20 +62,29 @@ public class ProductList implements Serializable {
 	@Column(nullable = false, length = 20)
 	private String proListRentPrice;
 	
+	/*
 	@OneToMany(mappedBy = "productList")
 	private List<ProductDetail> productDetails = new ArrayList<>();
+	*/
+	
+	/*
+	private void addProductDetails(ProductDetail productDetail) {
+		this.productDetails.add(productDetail);
+	}
+	*/
 	
 	
 	
 	@Builder
 	public ProductList(String proListType, String proListName, String proListCompany, String proListText,
-			String proListPrice, String proListRentPrice) {
+			String proListPrice, String proListRentPrice, List<ProductDetail> productDetails) {
 		this.proListType = proListType;
 		this.proListName = proListName;
 		this.proListCompany = proListCompany;
 		this.proListText = proListText;
 		this.proListPrice = proListPrice;
 		this.proListRentPrice = proListRentPrice;
+		//this.productDetails = productDetails;
 		
 	}
 }

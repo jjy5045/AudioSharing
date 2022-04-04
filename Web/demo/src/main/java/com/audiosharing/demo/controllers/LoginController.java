@@ -55,8 +55,8 @@ public class LoginController {
 	}
 	*/
 	
-	@PostMapping("")
-	public Map<String, Object> findByUserIdAndUserPassword(@RequestBody UserValue value, HttpSession session) {
+	@PostMapping("/login")
+	public Map<String, Object> Login(@RequestBody UserValue value, HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		
 		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
@@ -66,7 +66,32 @@ public class LoginController {
 			response.put("oUser", oUser.get());
 			
 			// 세션에 로그인 회원 정보 보관 
-			session.setAttribute("oUser", oUser);
+			//session.setAttribute("oUser", oUser);
+			session.setAttribute("id", oUser.get().getUserId());
+			session.setAttribute("LOGIN_MEMBER_ID", "USER");
+
+			
+		} else {
+			response.put("result", "FAIL");
+			response.put("reason", "일치하는 회원 정보가 없습니다. 입력 정보를 다시 확인하세요.");
+		}
+
+		return response;
+	}
+	
+	@PostMapping("/logout")
+	public Map<String, Object> Logout(@RequestBody UserValue value, HttpSession session) {
+		Map<String, Object> response = new HashMap<>();
+		
+		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
+		
+		if (oUser.isPresent()) {
+			response.put("result", "SUCCESS");
+			response.put("oUser", oUser.get());
+			
+			// 세션에 로그인 회원 정보 보관 
+			//session.setAttribute("oUser", oUser);
+			session.setAttribute("id", oUser.get().getUserId());
 			session.setAttribute("LOGIN_MEMBER_ID", "USER");
 
 			
@@ -82,16 +107,18 @@ public class LoginController {
 	public Map<String, Object> get(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser, HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		
-		if(oUser.isEmpty()) {
-			response.put("일치하지 않음", "FAIL");
+		if(session.getAttribute("id")==null) {
+			response.put("로그인 상태가 아님", "FAIL");
 			return response;
 		}
 		
 		//return oUser.get().getUserEmail();
 		else {
-			response.put("세션 있음", "OK");
+			response.put("로그인 상태", "OK");
 			response.put("session.getId()", session.getId());
-			response.put("oUser.get().getUserEmail()", oUser.get().getUserEmail());
+			response.put("id", session.getAttribute("id"));
+			//response.put("oUser.get().getUserEmail()", oUser.get().getUserEmail());
+			response.put("권한", session.getAttribute("LOGIN_MEMBER_ID"));
 			return response;
 		}
 	}

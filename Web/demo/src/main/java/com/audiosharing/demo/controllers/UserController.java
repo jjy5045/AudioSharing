@@ -34,6 +34,57 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
+	
+	@PostMapping("/login")
+	public Map<String, Object> Login(@RequestBody UserValue value, HttpSession session) {
+		Map<String, Object> response = new HashMap<>();
+		
+		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
+		
+		if (oUser.isPresent()) {
+			response.put("result", "SUCCESS");
+			response.put("oUser", oUser.get());
+			
+			// 세션에 로그인 회원 정보 보관 
+			//session.setAttribute("oUser", oUser);
+			session.setAttribute("id", oUser.get().getUserId());
+			session.setAttribute("LOGIN_MEMBER_ID", "USER");
+
+			
+		} else {
+			response.put("result", "FAIL");
+			response.put("reason", "일치하는 회원 정보가 없습니다. 입력 정보를 다시 확인하세요.");
+		}
+
+		return response;
+	}
+	
+	@GetMapping("/info")
+	@LoginType(type = LoginType.UserType.USER)
+	public Map<String, Object> Info(HttpSession session) {
+		Map<String, Object> response = new HashMap<>();
+		
+		//response = findByUserId(session.getAttribute("id"));
+		Optional<User> oUser = userService.findByUserId((Long)session.getAttribute("id"));
+		response.put("result", "SUCCESS");
+		response.put("user", oUser);
+		
+		return response;
+	}
+	
+	@GetMapping("/logout")
+	@LoginType(type = LoginType.UserType.USER)
+	public Map<String, Object> Logout(HttpSession session) {
+		Map<String, Object> response = new HashMap<>();
+		
+		session.setAttribute("loginCheck",null);
+        session.setAttribute("id",null);
+		session.invalidate();
+		
+		response.put("로그아웃", "OK");
+
+		return response;
+	}
 
 	@GetMapping("/{id}")
 	public Map<String, Object> findByUserId(@PathVariable("id") long id) {
@@ -52,25 +103,28 @@ public class UserController {
 	}
 	
 	@GetMapping("/session")
-	public Map<String, Object> findByUserId(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser, HttpSession session) {
+	public Map<String, Object> get(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser, HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		
-		if(oUser.isEmpty()) {
-			response.put("일치하지 않음", "FAIL");
+		if(session.getAttribute("id")==null) {
+			response.put("로그인 상태가 아님", "FAIL");
 			return response;
-		} else {
-			Optional<User> User = userService.findByUserId(oUser.get().getUserId());
-			response.put("result", "SUCCESS");
-			response.put("user", User.get());
+		}
+		
+		//return oUser.get().getUserEmail();
+		else {
+			response.put("로그인 상태", "OK");
 			response.put("session.getId()", session.getId());
-			
+			response.put("id", session.getAttribute("id"));
+			//response.put("oUser.get().getUserEmail()", oUser.get().getUserEmail());
+			response.put("권한", session.getAttribute("LOGIN_MEMBER_ID"));
 			return response;
 		}
 	}
 	
 	@GetMapping("/all")
 	///@LoginCheck(type = LoginCheck.UserType.USER)
-	@LoginType(type = LoginType.UserType.USER)
+	@LoginType(type = LoginType.UserType.ADMIN)
 	public Map<String, Object> findAll() {
 		Map<String, Object> response = new HashMap<>();
 		

@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.audiosharing.demo.models.entities.ProductDetail;
 import com.audiosharing.demo.models.entities.ProductList;
+import com.audiosharing.demo.models.entities.ProductRent;
 import com.audiosharing.demo.models.values.ProductDetailValue;
 import com.audiosharing.demo.models.values.ProductListValue;
+import com.audiosharing.demo.models.values.ProductRentValue;
 import com.audiosharing.demo.repositories.ProductDetailRepository;
 import com.audiosharing.demo.repositories.ProductListRepository;
 
@@ -27,6 +29,11 @@ public class ProductDetailService {
 		this.productDetailRepository = productDetailRepository;
 	}
 	
+	@Transactional(readOnly = true)
+	public Optional<ProductDetail> findByProDetailId(Long id) {
+		return productDetailRepository.findByProDetailId(id);
+	}
+	
 
 	
 	@Transactional
@@ -34,6 +41,49 @@ public class ProductDetailService {
 		List<ProductDetail> ProductDetailList = this.productDetailRepository.findAll();
 		return ProductDetailList;
 	}
+	
+	
+	@Transactional
+	public void rentBoolean(long id) {
+		Optional<ProductDetail> oProductDetail = productDetailRepository.findByProDetailId(id);
+		if(oProductDetail.isPresent()) {
+			ProductDetail productDetail = oProductDetail.get();
+			
+			if(productDetail.isProDetailRentCheck()==false) {
+				productDetail.setProDetailRentCheck(true);	
+				productDetailRepository.save(productDetail);
+				return;
+		}
+			
+			if(productDetail.isProDetailRentCheck() == true) {
+				productDetail.setProDetailRentCheck(false);		
+				productDetailRepository.save(productDetail);
+				return;
+			}
+			
+		}
+	}
+	
+	
+	
+	
+	@Transactional
+	public int patch(long id, ProductDetailValue value) {
+		Optional<ProductDetail> oProductDetail = productDetailRepository.findByProDetailId(id);
+		if(oProductDetail.isPresent()) {
+			ProductDetail productDetail = oProductDetail.get();
+			if(StringUtils.isNotBlank(value.getProDetailNumber()))
+				productDetail.setProDetailNumber(value.getProDetailNumber());
+			if(StringUtils.isNotBlank(value.getProDetailQR()))
+				productDetail.setProDetailNumber(value.getProDetailQR());
+			
+			productDetailRepository.save(productDetail);
+			return 1;
+		}
+		
+		return 0;
+	}
+	
 	
 	@Transactional
 	public ProductDetail save(ProductDetailValue value) {

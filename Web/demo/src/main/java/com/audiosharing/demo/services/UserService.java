@@ -46,6 +46,7 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
+
 	@Transactional
 	public int patch(long id, UserValue value) {
 		Optional<User> oUser = userRepository.findByUserId(id);

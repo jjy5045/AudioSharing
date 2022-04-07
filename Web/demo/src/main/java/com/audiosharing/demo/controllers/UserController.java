@@ -123,8 +123,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/all")
-	///@LoginCheck(type = LoginCheck.UserType.USER)
-	@LoginType(type = LoginType.UserType.ADMIN)
+	//@LoginCheck(type = LoginCheck.UserType.USER)
+	//@LoginType(type = LoginType.UserType.ADMIN)
 	public Map<String, Object> findAll() {
 		Map<String, Object> response = new HashMap<>();
 		

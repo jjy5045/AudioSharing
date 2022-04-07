@@ -105,7 +105,7 @@
             <!--//android:theme="@style/EditScreenTextInputLayoutStyle">-->
 
             <EditText
-                android:id="@+id/et_ID"
+                android:id="@+id/et_userId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawablePadding="16dp"
@@ -115,7 +115,7 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
-                android:backgroundTint="@android:color/black"
+                android:backgroundTint="@android:color/white"
                 android:backgroundTintMode="multiply"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -127,7 +127,7 @@
             <!--//android:theme="@style/EditScreenTextInputLayoutStyle">-->
 
             <EditText
-                android:id="@+id/et_Password"
+                android:id="@+id/et_userPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawablePadding="16dp"
@@ -137,7 +137,7 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
-                android:backgroundTint="@android:color/black"
+                android:backgroundTint="@android:color/white"
                 android:backgroundTintMode="multiply"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>

@@ -92,7 +92,7 @@ public class UserController {
 
 		Optional<User> oUser = userService.findByUserId(id);
 		if (oUser.isPresent()) {
-			response.put("result", "SUCCESS");
+			//response.put("result", "SUCCESS");
 			response.put("user", oUser.get());
 		} else {
 			response.put("result", "FAIL");

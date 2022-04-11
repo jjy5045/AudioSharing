@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.project.healingEars.api.APIAdapter;
 import com.project.healingEars.http.vo.ProductDetailVO;
 import com.project.healingEars.http.vo.UserVO;
+import com.project.healingEars.http.vo.testVO;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -53,10 +54,17 @@ public class userService extends APIAdapter {
         Call<ProductDetailVO> ProductDetailInfo();
 
 
-        @GET("users/1")
+        @GET("users/3")
             //Call<userVO> myInfo(@Path("userID") String userID);
         //Call<UserVO> Info2();
-        Call<String> Info2();
+        //Call<String> Info2();
+        Call<testVO> Info2();
+
+        @GET("users/3")
+        Call<JsonObject> Info3();
+
+        @GET("productDetail/all")
+        Call<JsonObject> Info4();
 
         /**
          * 회원가입 메소드

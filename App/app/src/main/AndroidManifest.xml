@@ -19,7 +19,7 @@
 
         <!-- http 접근 허용 -->
         <activity
-            android:name="com.project.healingEars.activity.LoginActivity"
+            android:name="com.project.healingEars.activity.ProDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

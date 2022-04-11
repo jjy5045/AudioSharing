@@ -142,7 +142,7 @@ public class UserController {
 		Optional<User> oUser = userService.findByUserId(id);
 		if (oUser.isPresent()) {
 			response.put("result", "SUCCESS");
-			response.put("userVO", oUser.get());
+			response.put("UserVO", oUser.get());
 			result = mapper.writeValueAsString(response);
 			
 		} else {

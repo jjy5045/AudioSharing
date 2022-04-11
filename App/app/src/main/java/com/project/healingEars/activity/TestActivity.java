@@ -30,11 +30,12 @@ import com.project.healingEars.api.preference.CookieSharedPreference;
 import com.project.healingEars.http.vo.ProductDetailVO;
 import com.project.healingEars.http.vo.UserVO;
 import com.project.healingEars.http.service.userService;
+import com.project.healingEars.http.vo.test2VO;
 import com.project.healingEars.http.vo.testVO;
 
 import org.json.JSONObject;
 
-public class LoginActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity {
 
     ImageView imageView;
     TextView textView;
@@ -56,62 +57,19 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            UserVO userVo = new UserVO(params[0], params[1]);//id, pwd
-            //Call<String> stringCall = userService.getRetrofit(getApplicationContext()).login(userVO);
-            //Call<String> list = userService.getRetrofit(getApplicationContext()).Info();
-            //Call<List<userVO>> list = userService.getRetrofit(getApplicationContext()).Info();
-            //Call<String> list = userService.getRetrofit(getApplicationContext()).Info2();
-            Call<testVO> list = userService.getRetrofit(getApplicationContext()).Info2();
-
+            UserVO userVO = new UserVO(params[0], params[1]);//id, pwd
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            String json = "{\n" +
-                    "  \"result\": \"SUCCESS\",\n" +
-                    "  \"userVO\": {\n" +
-                    "    \"userId\": 1,\n" +
-                    "    \"userType\": \"1\",\n" +
-                    "    \"userEmail\": \"user1\",\n" +
-                    "    \"userName\": \"유저340\",\n" +
-                    "    \"userSex\": \"2\",\n" +
-                    "    \"userBirth\": \"960830\",\n" +
-                    "    \"userTel\": \"01087799253\",\n" +
-                    "    \"userPassword\": \"1\",\n" +
-                    "    \"userDel\": false,\n" +
-                    "    \"userCreateTimestamp\": \"2022-03-28T08:07:33.000+00:00\",\n" +
-                    "    \"userUpdateTimestamp\": null\n" +
-                    "  }\n" +
-                    "}";
-            /*
-            try {
-                //System.out.println(list.execute().body());
-                //testVO test =
-                //Response<String> response = list.execute();
 
-                testVO test = objectMapper.readValue(json, testVO.class);
-                UserVO user = objectMapper.readValue(json, UserVO.class);
-                System.out.println(test.getResult());
-                return json;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-             */
-
-            /*
-            Gson gson = new Gson();
-            JsonObject test = gson.fromJson(list.toString(), JsonObject.class);
-            */
-
-            //Call<ProductDetailVO> productDetail = userService.getRetrofit(getApplicationContext()).ProductDetailInfo();
-            //Call<JsonObject> stringCall = userService.getRetrofit(getApplicationContext()).login(userVO);
+            //Call<String> stringCall = UserService.getRetrofit(getApplicationContext()).login(userVO);
+            Call<JsonObject> list = userService.getRetrofit(getApplicationContext()).Info3();
             try {
                 //return stringCall.execute().body();
-                Log.v("test","리턴 list");
-                //Log.d("user", String.valueOf(list.execute().body()));
-                //Log.d("test", String.valueOf(list.execute().body()));
-                //return list.execute().body();
-                return list.execute().body().toString();
-                //return productDetail.execute().body().toString();
-
+                //testVO test = objectMapper.readValue(list.execute().body().toString(), testVO.class);
+                test2VO test2 = objectMapper.readValue(list.execute().body().toString(), test2VO.class);
+                ObjectMapper objectMapper3 = new ObjectMapper();
+                //return test.getUserVO().toString();
+                return test2.toString();
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
@@ -129,23 +87,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        /*
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        etUsername = (EditText) findViewById(R.id.userId);
-        etPassword = (EditText) findViewById(R.id.userPassword);
-        loginbtn = (Button) findViewById(R.id.bt_login);
-
-        loginbtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                userName = etUsername.getText().toString();
-                passWord = etPassword.getText().toString();
-                //loginCheck(userName, passWord);
-            }
-        });
-         */
-
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
@@ -179,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         String result = new LoginTask().execute(loginid, loginpwd, "login").get();
                         testVO test = objectMapper.readValue(result, testVO.class);
+
 
                         Log.d("test", result);
                         if(result.equalsIgnoreCase("SUCESS")) {

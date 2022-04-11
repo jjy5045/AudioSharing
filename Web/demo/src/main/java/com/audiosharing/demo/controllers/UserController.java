@@ -111,7 +111,8 @@ public class UserController {
 	}
 	*/
 	
-	
+	//////////////// 성공
+	/*
 	@GetMapping("/{id}")
 	public ResponseEntity<String> findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
 		Map<String, Object> response = new HashMap<>();
@@ -131,7 +132,27 @@ public class UserController {
 
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
+	*/
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<String> findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
+		Map<String, Object> response = new HashMap<>();
+		String result = null;
+		//User tempUser = userService.findByUserId(id);
+		Optional<User> oUser = userService.findByUserId(id);
+		if (oUser.isPresent()) {
+			response.put("result", "SUCCESS");
+			response.put("userVO", oUser.get());
+			result = mapper.writeValueAsString(response);
+			
+		} else {
+			response.put("result", "FAIL");
+			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
+		}
+
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	
+	}
 	
 	@GetMapping("/session")
 	public Map<String, Object> get(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser, HttpSession session) {

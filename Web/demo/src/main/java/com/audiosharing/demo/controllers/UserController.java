@@ -8,7 +8,9 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +27,9 @@ import com.audiosharing.demo.models.values.UserValue;
 import com.audiosharing.demo.services.UserService;
 import com.audiosharing.demo.util.LoginType;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.RequiredArgsConstructor;
 
 
@@ -32,8 +37,9 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(value = "/users", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RestController
 public class UserController {
-
+	
 	private final UserService userService;
+	private final ObjectMapper mapper;
 	
 	@PostMapping("/login")
 	public Map<String, Object> Login(@RequestBody UserValue value, HttpSession session) {
@@ -85,7 +91,8 @@ public class UserController {
 
 		return response;
 	}
-
+	
+	/*
 	@GetMapping("/{id}")
 	public Map<String, Object> findByUserId(@PathVariable("id") long id) {
 		Map<String, Object> response = new HashMap<>();
@@ -93,7 +100,8 @@ public class UserController {
 		Optional<User> oUser = userService.findByUserId(id);
 		if (oUser.isPresent()) {
 			//response.put("result", "SUCCESS");
-			response.put("user", oUser.get());
+			//response.put("user", oUser.get());
+			response.put("userVO", oUser.get());
 		} else {
 			response.put("result", "FAIL");
 			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
@@ -101,6 +109,29 @@ public class UserController {
 
 		return response;
 	}
+	*/
+	
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<String> findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
+		Map<String, Object> response = new HashMap<>();
+		String result = null;
+		//User tempUser = userService.findByUserId(id);
+		Optional<User> oUser = userService.findByUserId(id);
+		if (oUser.isPresent()) {
+			//response.put("result", "SUCCESS");
+			//response.put("user", oUser.get());
+			response.put("userVO", oUser.get());
+			result = mapper.writeValueAsString(oUser.get());
+			
+		} else {
+			response.put("result", "FAIL");
+			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
+		}
+
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
 	
 	@GetMapping("/session")
 	public Map<String, Object> get(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser, HttpSession session) {

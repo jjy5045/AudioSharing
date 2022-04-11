@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,6 +23,9 @@ import com.audiosharing.demo.repositories.ProductListRepository;
 import com.audiosharing.demo.services.ProductDetailService;
 import com.audiosharing.demo.services.ProductListService;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -29,6 +34,21 @@ import lombok.RequiredArgsConstructor;
 public class ProductDetailController {
 	private final ProductDetailService productDetailService;
 	private final ProductListService productListService;
+	private final ObjectMapper mapper;
+	
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<String> findByProDetailId(@PathVariable("id") long id) throws JsonProcessingException {
+		Optional<ProductDetail> oProductDetail = productDetailService.findByProDetailId(id);
+		String result = null;
+		if(oProductDetail.isPresent()) {
+			result = mapper.writeValueAsString(oProductDetail);
+		} else {
+			result = "False";
+		}
+		
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
 	
 	@GetMapping("/all")
 	public Map<String, Object> findAll() {

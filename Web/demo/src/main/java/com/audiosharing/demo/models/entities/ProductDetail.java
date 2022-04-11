@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,23 +1,44 @@
 package com.project.healingEars.http.vo;
 
-public class userVO {
+import com.google.gson.annotations.SerializedName;
+
+public class UserVO {
+    @SerializedName("userId")
     private String userId;
+
+    @SerializedName("userBirth")
     private String userBirth;
+
+    @SerializedName("userCreateTimestamp")
     private String userCreateTimestamp;
+
+    @SerializedName("userEmail")
     private String userEmail;
+
+    @SerializedName("userName")
     private String userName;
+
+    @SerializedName("userPassword")
     private String userPassword;
+
+    @SerializedName("userSex")
     private String userSex;
+
+    @SerializedName("userTel")
     private String userTel;
+
+    @SerializedName("userType")
     private String userType;
+
+    @SerializedName("userUpdateTimestamp")
     private String userUpdateTimestamp;
 
     //생성자
-    public userVO() {
-        System.out.println("UserVO 생성자 호출");
+    public UserVO() {
+        System.out.println("userVO 생성자 호출");
     }
 
-    public userVO(String userId, String userBirth, String userCreateTimestamp,
+    public UserVO(String userId, String userBirth, String userCreateTimestamp,
                   String userEmail, String userName, String userPassword,
                   String userSex, String userTel, String userType, String userUpdateTimestamp) {
         System.out.println("UserVO 생성자 호출");
@@ -33,7 +54,7 @@ public class userVO {
         this.userUpdateTimestamp = userUpdateTimestamp;
     }
 
-    public userVO(String userEmail, String userPassword) {
+    public UserVO(String userEmail, String userPassword) {
         System.out.println("UserVO 생성자 호출");
         this.userEmail = userEmail;
         this.userPassword = userPassword;

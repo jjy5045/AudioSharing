@@ -19,13 +19,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import retrofit2.Call;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.app.R;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.project.healingEars.api.preference.CookieSharedPreference;
-import com.project.healingEars.http.vo.userVO;
+import com.project.healingEars.http.vo.ProductDetailVO;
+import com.project.healingEars.http.vo.UserVO;
 import com.project.healingEars.http.service.userService;
+import com.project.healingEars.http.vo.testVO;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -49,13 +53,53 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            userVO userVO = new userVO(params[0], params[1]);//id, pwd
+            UserVO userVo = new UserVO(params[0], params[1]);//id, pwd
             //Call<String> stringCall = userService.getRetrofit(getApplicationContext()).login(userVO);
-            Call<String> list = userService.getRetrofit(getApplicationContext()).Info();
+            //Call<String> list = userService.getRetrofit(getApplicationContext()).Info();
+            //Call<List<userVO>> list = userService.getRetrofit(getApplicationContext()).Info();
+            Call<String> list = userService.getRetrofit(getApplicationContext()).Info2();
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            String json = "{\n" +
+                    "  \"result\": \"SUCCESS\",\n" +
+                    "  \"userVO\": {\n" +
+                    "    \"userId\": 1,\n" +
+                    "    \"userType\": \"1\",\n" +
+                    "    \"userEmail\": \"user1\",\n" +
+                    "    \"userName\": \"유저340\",\n" +
+                    "    \"userSex\": \"2\",\n" +
+                    "    \"userBirth\": \"960830\",\n" +
+                    "    \"userTel\": \"01087799253\",\n" +
+                    "    \"userPassword\": \"1\",\n" +
+                    "    \"userDel\": false,\n" +
+                    "    \"userCreateTimestamp\": \"2022-03-28T08:07:33.000+00:00\",\n" +
+                    "    \"userUpdateTimestamp\": null\n" +
+                    "  }\n" +
+                    "}";
+            try {
+                //System.out.println(list.execute().body());
+                //testVO test = objectMapper.readValue(list.execute().body(), testVO.class);
+                testVO test = objectMapper.readValue(json, testVO.class);
+                UserVO user = objectMapper.readValue(json, UserVO.class);
+                System.out.println(test.getResult());
+                return test.getResult();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            /*
+            Gson gson = new Gson();
+            JsonObject test = gson.fromJson(list.toString(), JsonObject.class);
+            */
+            //Call<ProductDetailVO> productDetail = userService.getRetrofit(getApplicationContext()).ProductDetailInfo();
             //Call<JsonObject> stringCall = userService.getRetrofit(getApplicationContext()).login(userVO);
             try {
                 //return stringCall.execute().body();
+                Log.v("test","리턴 list");
+                //Log.d("user", String.valueOf(list.execute().body()));
+                //Log.d("test", String.valueOf(list.execute().body()));
+                //return list.execute().body();
                 return list.execute().body();
+                //return productDetail.execute().body().toString();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -120,26 +164,11 @@ public class LoginActivity extends AppCompatActivity {
                     String loginpwd = userPassword.getText().toString();
                     try {
                         String result = new LoginTask().execute(loginid, loginpwd, "login").get();
-
-                        if (result.contains("true")) {
-                            Toast.makeText(LoginActivity.this, "로그인", Toast.LENGTH_SHORT).show();
-                            CookieSharedPreference pref = CookieSharedPreference.getInstanceOf(getApplicationContext());
-                            pref.setUserID(loginid);
-
-                            //Intent intent = new Intent(LoginActivity.this, activity_home.class);
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                            startActivity(intent);
-                            finish();
-                        } else if (result.contains("false")) {
-                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
-                            userId.setText("");
-                            userPassword.setText("");
-                        } else if (result.contains("email")) {
-                            Toast.makeText(LoginActivity.this, "잘못된 이메일 형식입니다.", Toast.LENGTH_SHORT).show();
-                            userId.setText("");
-                            userPassword.setText("");
+                        Log.d("test", result);
+                        if(result.equalsIgnoreCase("SUCESS")) {
+                            System.out.println(result);
                         }
+
                     } catch (Exception ignored) {
                         Log.v("test","예외");
                     }

@@ -1,6 +1,7 @@
 package com.project.healingEars.api;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.project.healingEars.api.interceptor.AddCookiesInterceptor;
 import com.project.healingEars.api.interceptor.ReceivedCookiesInterceptor;
@@ -9,7 +10,6 @@ import com.project.healingEars.global;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 
 /**
  * APIAdapter 클래스
@@ -57,7 +57,7 @@ public class APIAdapter {
                 .client(okHttpClient)
                 .build();
 
-
+        Log.v("통신 성공", "성공");
         /**
          * 서비스객체의 이름으로 Retrofit 객체 생성 및 반환
          *

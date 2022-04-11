@@ -1,0 +1,16 @@
+{
+  "result": "SUCCESS",
+  "user": {
+    "userId": 1,
+    "userType": "1",
+    "userEmail": "user1",
+    "userName": "유저340",
+    "userSex": "2",
+    "userBirth": "960830",
+    "userTel": "01087799253",
+    "userPassword": "1",
+    "userDel": false,
+    "userCreateTimestamp": "2022-03-28T08:07:33.000+00:00",
+    "userUpdateTimestamp": null
+  }
+}

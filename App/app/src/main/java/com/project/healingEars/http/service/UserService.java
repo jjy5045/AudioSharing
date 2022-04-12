@@ -5,6 +5,7 @@ import android.database.Observable;
 
 import com.google.gson.JsonObject;
 import com.project.healingEars.api.APIAdapter;
+import com.project.healingEars.http.dto.UserDTO;
 import com.project.healingEars.http.vo.ProductDetailVO;
 import com.project.healingEars.http.vo.UserVO;
 
@@ -96,6 +97,16 @@ public class UserService extends APIAdapter {
         //response는 true/false
 
         //Call<User> updateUser(@Part("photo") RequestBody photo, @Part("description") RequestBody description);
+
+
+        @Headers("Content-Type: application/json")
+        @POST("users/login")
+        Call<UserDTO> login2(@Body UserVO userVO);
+
+
+        @Headers("Content-Type: application/json")
+        @POST("users/login")
+        Call<String> loginString(@Body UserVO userVO);
 
 
         //회원 정보 수정

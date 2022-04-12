@@ -13,7 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class UserVO {
-
     public int userId;
     public String userType;
     public String userEmail;

@@ -1,4 +1,4 @@
-package com.project.healingEars.activity;
+package com.project.healingEars.activity.test;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,18 +18,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.example.app.R;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
-import com.project.healingEars.activity.test.proRentTestActivity;
+import com.project.healingEars.activity.HomeActivity;
+import com.project.healingEars.activity.SignUpActivity;
 import com.project.healingEars.api.preference.CookieSharedPreference;
-import com.project.healingEars.http.dto.ProductRentDTO;
+import com.project.healingEars.http.dto.UserDTO;
 import com.project.healingEars.http.service.UserService;
 import com.project.healingEars.http.vo.UserVO;
 
 import retrofit2.Call;
+import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class TestLoginActivity extends AppCompatActivity {
 
     ImageView imageView;
     TextView textView;
@@ -60,26 +59,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public class LoginTask extends AsyncTask<String, Void, String> {
+    public class LoginTask extends AsyncTask<String, Void, Response<UserDTO>> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
         @Override
-        protected String doInBackground(String... params) {
+        protected Response<UserDTO> doInBackground(String... params) {
             UserVO userVO = new UserVO(params[0], params[1]);//email, pwd
             //UserVO userVO = new UserVO("jjy0943@naver.com", "111111");
-            Call<String> jsonCall = UserService.getRetrofit(getApplicationContext()).loginString(userVO);
             try {
-                return jsonCall.execute().body();
+                Call<UserDTO> jsonCall = UserService.getRetrofit(getApplicationContext()).login2(userVO);
+                Response<UserDTO> response = jsonCall.execute();
+                return response;
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
                 return null;
             }
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(Response<UserDTO> s) {
             super.onPostExecute(s);
         }
     }
@@ -94,22 +94,34 @@ public class LoginActivity extends AppCompatActivity {
                     String loginid = userId.getText().toString();
                     String loginpwd = userPwd.getText().toString();
                     try {
-                        String result = new LoginTask().execute(loginid, loginpwd, "login").get();
+                        Response<UserDTO> result = new LoginTask().execute(loginid, loginpwd, "login").get();
 
-                        if(result.equals("SUCCESS")) {
-                            Toast.makeText(LoginActivity.this, "로그인", Toast.LENGTH_SHORT).show();
+
+                        if ((result.body().result).equals("SUCCESS")) {
+                            Toast.makeText(TestLoginActivity.this, "로그인", Toast.LENGTH_SHORT).show();
                             CookieSharedPreference pref = CookieSharedPreference.getInstanceOf(getApplicationContext());
                             pref.setUserID(loginid);
                             //pref.
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(TestLoginActivity.this, HomeActivity.class);
                             startActivity(intent);
                             finish();
-                        } else if(result.equals("FAIL")) {
-                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
+                        } else if ((result.body().result).equals("FAIL")) {
+                            Toast.makeText(TestLoginActivity.this, "아이디 또는 비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
                             userId.setText("");
                             userPwd.setText("");
                         }
+                        /*
+                        else if (body.contains("email")) {
+                            Toast.makeText(LoginActivity.this, "잘못된 이메일 형식입니다.", Toast.LENGTH_SHORT).show();
+                            userId.setText("");
+                            userPwd.setText("");
+                        }
+
+                         */
                     } catch (Exception ignored) {
+                        Toast.makeText(TestLoginActivity.this, "오류가 발생했습니다", Toast.LENGTH_SHORT).show();
+                        userId.setText("");
+                        userPwd.setText("");
                     }
                     break;
                 case R.id.bt_signup: // 회원가입

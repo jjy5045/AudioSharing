@@ -46,9 +46,9 @@ public class UserController {
 	private final UserService userService;
 	private final ObjectMapper mapper;
 	
-	
+	/*
 	@PostMapping("/login")
-	public ResponseEntity<Map> Login(@RequestBody UserValue value, HttpSession session) {
+	public ResponseEntity<Map<String, Object>> Login(@RequestBody UserValue value, HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		
 		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
@@ -66,8 +66,26 @@ public class UserController {
 			response.put("reason", "일치하는 회원 정보가 없습니다. 입력 정보를 다시 확인하세요.");
 		}
 		//return Json
-		return new ResponseEntity<Map>(response, HttpStatus.OK);
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
+	*/
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> Login(@RequestBody UserValue value, HttpSession session) {
+		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
+		String result = null;
+		if (oUser.isPresent()) {
+			result = "SUCCESS";
+			session.setAttribute("id", oUser.get().getUserId());
+			session.setAttribute("LOGIN_MEMBER_ID", "USER");
+		} else {
+			result = "FAIL";
+		
+		}
+		//return Json
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
 	
 	@GetMapping("/info")
 	@LoginType(type = LoginType.UserType.USER)
@@ -76,6 +94,7 @@ public class UserController {
 		
 		//response = findByUserId(session.getAttribute("id"));
 		Optional<User> oUser = userService.findByUserId((Long)session.getAttribute("id"));
+		oUser.get().setUserPassword(null);
 		response.put("result", "SUCCESS");
 		response.put("user", oUser);
 		

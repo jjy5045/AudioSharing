@@ -3,6 +3,8 @@ package com.project.healingEars.api;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.project.healingEars.api.interceptor.AddCookiesInterceptor;
 import com.project.healingEars.api.interceptor.ReceivedCookiesInterceptor;
 import com.project.healingEars.global;
@@ -51,9 +53,15 @@ public class APIAdapter {
          *
          * 주의) addConverterFactory를 추가하지 않을 경우 어플리케이션이 종료됨
          */
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(global.baseURL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();
 

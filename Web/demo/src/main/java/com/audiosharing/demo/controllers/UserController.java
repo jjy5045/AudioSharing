@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.audiosharing.demo.models.entities.StationList;
 import com.audiosharing.demo.models.entities.User;
 import com.audiosharing.demo.models.values.UserValue;
@@ -33,6 +36,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
 
+
+
 @RequiredArgsConstructor
 @RequestMapping(value = "/users", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RestController
@@ -41,8 +46,9 @@ public class UserController {
 	private final UserService userService;
 	private final ObjectMapper mapper;
 	
+	
 	@PostMapping("/login")
-	public Map<String, Object> Login(@RequestBody UserValue value, HttpSession session) {
+	public ResponseEntity<Map> Login(@RequestBody UserValue value, HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		
 		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
@@ -55,14 +61,12 @@ public class UserController {
 			//session.setAttribute("oUser", oUser);
 			session.setAttribute("id", oUser.get().getUserId());
 			session.setAttribute("LOGIN_MEMBER_ID", "USER");
-
-			
 		} else {
 			response.put("result", "FAIL");
 			response.put("reason", "일치하는 회원 정보가 없습니다. 입력 정보를 다시 확인하세요.");
 		}
-
-		return response;
+		//return Json
+		return new ResponseEntity<Map>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/info")
@@ -134,10 +138,10 @@ public class UserController {
 	}
 	*/
 	
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<String> findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
 		Map<String, Object> response = new HashMap<>();
-		String result = null;
 		//User tempUser = userService.findByUserId(id);
 		Optional<User> oUser = userService.findByUserId(id);
 		if (oUser.isPresent()) {
@@ -148,11 +152,14 @@ public class UserController {
 			response.put("result", "FAIL");
 			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
 		}
-		result = mapper.writeValueAsString(response);
+		String result = mapper.writeValueAsString(response);
 
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	
 	}
+	
+	
+	
 	
 	@GetMapping("/session")
 	public Map<String, Object> get(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser, HttpSession session) {

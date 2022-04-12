@@ -14,6 +14,7 @@ import android.widget.Toast;
 import android.os.AsyncTask;
 
 import java.io.*;
+import java.util.LinkedHashMap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,8 +32,6 @@ import com.project.healingEars.http.vo.ProDetailTestVO;
 import com.project.healingEars.http.vo.ProductDetailVO;
 import com.project.healingEars.http.vo.UserVO;
 import com.project.healingEars.http.service.userService;
-import com.project.healingEars.http.vo.test2VO;
-import com.project.healingEars.http.vo.testVO;
 
 import org.json.JSONObject;
 
@@ -58,7 +57,7 @@ public class ProDetailActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            UserVO userVO = new UserVO(params[0], params[1]);//id, pwd
+            //UserVO userVO = new UserVO(params[0], params[1]);//id, pwd
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
@@ -124,6 +123,13 @@ public class ProDetailActivity extends AppCompatActivity {
 
                         String result = new LoginTask().execute(loginid, loginpwd, "login").get();
                         ProDetailTestVO test3 = objectMapper.readValue(result, ProDetailTestVO.class);
+
+
+
+
+
+                        //String proListName = (String) ((LinkedHashMap) test3.productDetail.get(0).productList).get("proListName");
+                        //String proListName = (String) ((LinkedHashMap) test3.productDetail.get(0)).get("proListName");
 
 
                         Log.d("test", result);

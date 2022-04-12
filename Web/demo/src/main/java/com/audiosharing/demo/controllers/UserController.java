@@ -49,7 +49,7 @@ public class UserController {
 		
 		if (oUser.isPresent()) {
 			response.put("result", "SUCCESS");
-			response.put("oUser", oUser.get());
+			response.put("user", oUser.get());
 			
 			// 세션에 로그인 회원 정보 보관 
 			//session.setAttribute("oUser", oUser);
@@ -142,13 +142,13 @@ public class UserController {
 		Optional<User> oUser = userService.findByUserId(id);
 		if (oUser.isPresent()) {
 			response.put("result", "SUCCESS");
-			response.put("UserVO", oUser.get());
-			result = mapper.writeValueAsString(response);
+			response.put("user", oUser.get());
 			
 		} else {
 			response.put("result", "FAIL");
 			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
 		}
+		result = mapper.writeValueAsString(response);
 
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	

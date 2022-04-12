@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.os.AsyncTask;
 
 import java.io.*;
@@ -18,22 +17,13 @@ import java.io.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import retrofit2.Call;
-import retrofit2.Response;
 
 import com.example.app.R;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.project.healingEars.api.preference.CookieSharedPreference;
-import com.project.healingEars.http.vo.ProductDetailVO;
-import com.project.healingEars.http.vo.UserVO;
 import com.project.healingEars.http.service.userService;
-import com.project.healingEars.http.vo.test2VO;
-import com.project.healingEars.http.vo.testVO;
-
-import org.json.JSONObject;
+import com.project.healingEars.http.vo.UserTestVO;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -57,7 +47,7 @@ public class TestActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            UserVO userVO = new UserVO(params[0], params[1]);//id, pwd
+            //UserVO userVO = new UserVO(params[0], params[1]);//id, pwd
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
@@ -66,7 +56,7 @@ public class TestActivity extends AppCompatActivity {
             try {
                 //return stringCall.execute().body();
                 //testVO test = objectMapper.readValue(list.execute().body().toString(), testVO.class);
-                test2VO test2 = objectMapper.readValue(list.execute().body().toString(), test2VO.class);
+                UserTestVO test2 = objectMapper.readValue(list.execute().body().toString(), UserTestVO.class);
                 ObjectMapper objectMapper3 = new ObjectMapper();
                 //return test.getUserVO().toString();
                 return test2.toString();
@@ -119,7 +109,7 @@ public class TestActivity extends AppCompatActivity {
                         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
                         String result = new LoginTask().execute(loginid, loginpwd, "login").get();
-                        testVO test = objectMapper.readValue(result, testVO.class);
+                        ///////testVO test = objectMapper.readValue(result, testVO.class);
 
 
                         Log.d("test", result);

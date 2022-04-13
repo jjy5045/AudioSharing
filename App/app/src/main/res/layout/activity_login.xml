@@ -157,7 +157,7 @@
                 android:layout_marginRight="16dp"
                 android:background="@drawable/buttonshapewhitebg"
                 android:fontFamily="@font/calibri"
-                android:text="Sign up"
+                android:text="@string/strBtnSignUp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="#000000"

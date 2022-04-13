@@ -35,44 +35,38 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 
-
-
-
 @RequiredArgsConstructor
 @RequestMapping(value = "/users", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RestController
 public class UserController {
-	
+
 	private final UserService userService;
 	private final ObjectMapper mapper;
-	
+
 	/*
-	@PostMapping("/login")
-	public ResponseEntity<Map<String, Object>> Login(@RequestBody UserValue value, HttpSession session) {
-		Map<String, Object> response = new HashMap<>();
-		
-		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
-		
-		if (oUser.isPresent()) {
-			response.put("result", "SUCCESS");
-			response.put("user", oUser.get());
-			
-			// 세션에 로그인 회원 정보 보관 
-			//session.setAttribute("oUser", oUser);
-			session.setAttribute("id", oUser.get().getUserId());
-			session.setAttribute("LOGIN_MEMBER_ID", "USER");
-		} else {
-			response.put("result", "FAIL");
-			response.put("reason", "일치하는 회원 정보가 없습니다. 입력 정보를 다시 확인하세요.");
-		}
-		//return Json
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-	}
-	*/
-	
+	 * @PostMapping("/login") public ResponseEntity<Map<String, Object>>
+	 * Login(@RequestBody UserValue value, HttpSession session) { Map<String,
+	 * Object> response = new HashMap<>();
+	 * 
+	 * Optional<User> oUser =
+	 * userService.findByUserEmailAndUserPassword(value.getUserEmail(),
+	 * value.getUserPassword());
+	 * 
+	 * if (oUser.isPresent()) { response.put("result", "SUCCESS");
+	 * response.put("user", oUser.get());
+	 * 
+	 * // 세션에 로그인 회원 정보 보관 //session.setAttribute("oUser", oUser);
+	 * session.setAttribute("id", oUser.get().getUserId());
+	 * session.setAttribute("LOGIN_MEMBER_ID", "USER"); } else {
+	 * response.put("result", "FAIL"); response.put("reason",
+	 * "일치하는 회원 정보가 없습니다. 입력 정보를 다시 확인하세요."); } //return Json return new
+	 * ResponseEntity<Map<String, Object>>(response, HttpStatus.OK); }
+	 */
+
 	@PostMapping("/login")
 	public ResponseEntity<String> Login(@RequestBody UserValue value, HttpSession session) {
-		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
+		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(),
+				value.getUserPassword());
 		String result = null;
 		if (oUser.isPresent()) {
 			result = "SUCCESS";
@@ -80,93 +74,96 @@ public class UserController {
 			session.setAttribute("LOGIN_MEMBER_ID", "USER");
 		} else {
 			result = "FAIL";
-		
-		}//
-		//return Json
+
+		} //
+			// return Json
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/info")
 	@LoginType(type = LoginType.UserType.USER)
 	public Map<String, Object> Info(HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
-		
-		//response = findByUserId(session.getAttribute("id"));
-		Optional<User> oUser = userService.findByUserId((Long)session.getAttribute("id"));
+
+		// response = findByUserId(session.getAttribute("id"));
+		Optional<User> oUser = userService.findByUserId((Long) session.getAttribute("id"));
 		oUser.get().setUserPassword(null);
 		response.put("result", "SUCCESS");
 		response.put("user", oUser);
-		
+
 		return response;
 	}
-	
+
 	@GetMapping("/logout")
-	@LoginType(type = LoginType.UserType.USER)
-	public Map<String, Object> Logout(HttpSession session) {
-		Map<String, Object> response = new HashMap<>();
-		
-		session.setAttribute("loginCheck",null);
-        session.setAttribute("id",null);
-		session.invalidate();
-		
-		response.put("로그아웃", "OK");
-
-		return response;
-	}
-	
-	/*
-	@GetMapping("/{id}")
-	public Map<String, Object> findByUserId(@PathVariable("id") long id) {
-		Map<String, Object> response = new HashMap<>();
-
-		Optional<User> oUser = userService.findByUserId(id);
-		if (oUser.isPresent()) {
-			//response.put("result", "SUCCESS");
-			//response.put("user", oUser.get());
-			response.put("userVO", oUser.get());
-		} else {
-			response.put("result", "FAIL");
-			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
-		}
-
-		return response;
-	}
-	*/
-	
-	//////////////// 성공
-	/*
-	@GetMapping("/{id}")
-	public ResponseEntity<String> findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
-		Map<String, Object> response = new HashMap<>();
+	// @LoginType(type = LoginType.UserType.USER)
+	public ResponseEntity<String> Logout(HttpSession session) {
 		String result = null;
-		//User tempUser = userService.findByUserId(id);
-		Optional<User> oUser = userService.findByUserId(id);
-		if (oUser.isPresent()) {
-			//response.put("result", "SUCCESS");
-			//response.put("user", oUser.get());
-			response.put("userVO", oUser.get());
-			result = mapper.writeValueAsString(oUser.get());
-			
+
+		if (session.getAttribute("id") != null) {
+			//session.setAttribute("loginCheck", null);
+			//session.setAttribute("id", null);
+			session.invalidate();
+			result = "SUCESS";
 		} else {
-			response.put("result", "FAIL");
-			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
+			result = "FAIL";
 		}
 
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
-	*/
-	
-	
+
+	/*
+	 * @GetMapping("/logout")
+	 * 
+	 * @LoginType(type = LoginType.UserType.USER) public Map<String, Object>
+	 * Logout(HttpSession session) { Map<String, Object> response = new HashMap<>();
+	 * 
+	 * session.setAttribute("loginCheck",null); session.setAttribute("id",null);
+	 * session.invalidate();
+	 * 
+	 * response.put("로그아웃", "OK");
+	 * 
+	 * return response; }
+	 */
+
+	/*
+	 * @GetMapping("/{id}") public Map<String, Object>
+	 * findByUserId(@PathVariable("id") long id) { Map<String, Object> response =
+	 * new HashMap<>();
+	 * 
+	 * Optional<User> oUser = userService.findByUserId(id); if (oUser.isPresent()) {
+	 * //response.put("result", "SUCCESS"); //response.put("user", oUser.get());
+	 * response.put("userVO", oUser.get()); } else { response.put("result", "FAIL");
+	 * response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요."); }
+	 * 
+	 * return response; }
+	 */
+
+	//////////////// 성공
+	/*
+	 * @GetMapping("/{id}") public ResponseEntity<String>
+	 * findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
+	 * Map<String, Object> response = new HashMap<>(); String result = null; //User
+	 * tempUser = userService.findByUserId(id); Optional<User> oUser =
+	 * userService.findByUserId(id); if (oUser.isPresent()) {
+	 * //response.put("result", "SUCCESS"); //response.put("user", oUser.get());
+	 * response.put("userVO", oUser.get()); result =
+	 * mapper.writeValueAsString(oUser.get());
+	 * 
+	 * } else { response.put("result", "FAIL"); response.put("reason",
+	 * "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요."); }
+	 * 
+	 * return new ResponseEntity<String>(result, HttpStatus.OK); }
+	 */
+
 	@GetMapping("/{id}")
 	public ResponseEntity<String> findByUserId(@PathVariable("id") long id) throws JsonProcessingException {
 		Map<String, Object> response = new HashMap<>();
-		//User tempUser = userService.findByUserId(id);
+		// User tempUser = userService.findByUserId(id);
 		Optional<User> oUser = userService.findByUserId(id);
 		if (oUser.isPresent()) {
 			response.put("result", "SUCCESS");
 			response.put("user", oUser.get());
-			
+
 		} else {
 			response.put("result", "FAIL");
 			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
@@ -174,38 +171,36 @@ public class UserController {
 		String result = mapper.writeValueAsString(response);
 
 		return new ResponseEntity<String>(result, HttpStatus.OK);
-	
+
 	}
-	
-	
-	
-	
+
 	@GetMapping("/session")
-	public Map<String, Object> get(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser, HttpSession session) {
+	public Map<String, Object> get(@SessionAttribute(name = "oUser", required = false) Optional<User> oUser,
+			HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
-		
-		if(session.getAttribute("id")==null) {
+
+		if (session.getAttribute("id") == null) {
 			response.put("로그인 상태가 아님", "FAIL");
 			return response;
 		}
-		
-		//return oUser.get().getUserEmail();
+
+		// return oUser.get().getUserEmail();
 		else {
 			response.put("로그인 상태", "OK");
 			response.put("session.getId()", session.getId());
 			response.put("id", session.getAttribute("id"));
-			//response.put("oUser.get().getUserEmail()", oUser.get().getUserEmail());
+			// response.put("oUser.get().getUserEmail()", oUser.get().getUserEmail());
 			response.put("권한", session.getAttribute("LOGIN_MEMBER_ID"));
 			return response;
 		}
 	}
-	
+
 	@GetMapping("/all")
-	//@LoginCheck(type = LoginCheck.UserType.USER)
-	//@LoginType(type = LoginType.UserType.ADMIN)
+	// @LoginCheck(type = LoginCheck.UserType.USER)
+	// @LoginType(type = LoginType.UserType.ADMIN)
 	public Map<String, Object> findAll() {
 		Map<String, Object> response = new HashMap<>();
-		
+
 		List<User> LUser = userService.findAll();
 		if (!LUser.isEmpty()) {
 			response.put("result", "SUCCESS");
@@ -214,10 +209,9 @@ public class UserController {
 			response.put("result", "FAIL");
 			response.put("reason", "사용자가 없습니다.");
 		}
-		
+
 		return response;
 	}
-	
 
 	@PostMapping("")
 	public Map<String, Object> save(@RequestBody UserValue value) {
@@ -234,12 +228,12 @@ public class UserController {
 
 		return response;
 	}
-	
+
 	@PatchMapping("/{id}")
 	public Map<String, Object> patch(@PathVariable("id") long id, @RequestBody UserValue value) {
 		Map<String, Object> response = new HashMap<>();
 
-		if(userService.patch(id, value) > 0) {
+		if (userService.patch(id, value) > 0) {
 			response.put("result", "SUCCESS");
 		} else {
 			response.put("result", "FAIL");
@@ -253,7 +247,7 @@ public class UserController {
 	public Map<String, Object> delete(@PathVariable("id") long id) {
 		Map<String, Object> response = new HashMap<>();
 
-		if(userService.delete(id) > 0) {
+		if (userService.delete(id) > 0) {
 			response.put("result", "SUCCESS");
 		} else {
 			response.put("result", "FAIL");

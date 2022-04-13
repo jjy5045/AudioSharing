@@ -81,7 +81,7 @@ public class UserController {
 		} else {
 			result = "FAIL";
 		
-		}
+		}//
 		//return Json
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}

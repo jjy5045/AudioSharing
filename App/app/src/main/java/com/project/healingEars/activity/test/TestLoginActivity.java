@@ -22,7 +22,7 @@ import com.project.healingEars.activity.HomeActivity;
 import com.project.healingEars.activity.SignUpActivity;
 import com.project.healingEars.api.preference.CookieSharedPreference;
 import com.project.healingEars.http.dto.UserDTO;
-import com.project.healingEars.http.service.UserService;
+import com.project.healingEars.http.repository.UserRepository;
 import com.project.healingEars.http.vo.UserVO;
 
 import retrofit2.Call;
@@ -69,7 +69,7 @@ public class TestLoginActivity extends AppCompatActivity {
             UserVO userVO = new UserVO(params[0], params[1]);//email, pwd
             //UserVO userVO = new UserVO("jjy0943@naver.com", "111111");
             try {
-                Call<UserDTO> jsonCall = UserService.getRetrofit(getApplicationContext()).login2(userVO);
+                Call<UserDTO> jsonCall = UserRepository.getRetrofit(getApplicationContext()).login2(userVO);
                 Response<UserDTO> response = jsonCall.execute();
                 return response;
             } catch (IOException e) {

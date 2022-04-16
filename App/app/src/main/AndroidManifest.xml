@@ -18,7 +18,10 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name="com.project.healingEars.activity.HomeActivity"
-            android:exported="false" /> <!-- http 접근 허용 -->
+            android:exported="false"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.App.NoActionBar" />
+        <!-- http 접근 허용 -->
         <activity
             android:name="com.project.healingEars.activity.LoginActivity"
             android:exported="true">

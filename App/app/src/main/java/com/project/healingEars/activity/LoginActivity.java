@@ -18,12 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.example.app.R;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
-import com.project.healingEars.activity.test.proRentTestActivity;
+import com.project.healingEars.activity.test.TestActivity;
 import com.project.healingEars.api.preference.CookieSharedPreference;
-import com.project.healingEars.http.dto.ProductRentDTO;
+import com.project.healingEars.http.repository.UserRepository;
 import com.project.healingEars.http.service.UserService;
 import com.project.healingEars.http.vo.UserVO;
 
@@ -59,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         joinBtn = (Button) findViewById(R.id.bt_signup);
     }
 
-
+    // Activity에서 비동기 연결
+    /*
     public class LoginTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -69,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             UserVO userVO = new UserVO(params[0], params[1]);//email, pwd
             //UserVO userVO = new UserVO("jjy0943@naver.com", "111111");
-            Call<String> jsonCall = UserService.getRetrofit(getApplicationContext()).loginString(userVO);
+            Call<String> jsonCall = UserRepository.getRetrofit(getApplicationContext()).loginString(userVO);
             try {
                 return jsonCall.execute().body();
             } catch (IOException e) {
@@ -83,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             super.onPostExecute(s);
         }
     }
+    */
 
 
     class BtnOnClickListener implements Button.OnClickListener {
@@ -94,7 +93,9 @@ public class LoginActivity extends AppCompatActivity {
                     String loginid = userId.getText().toString();
                     String loginpwd = userPwd.getText().toString();
                     try {
-                        String result = new LoginTask().execute(loginid, loginpwd, "login").get();
+                        //String result = new LoginTask().execute(loginid, loginpwd, "login").get();
+                        //String result = new LoginTask().execute(loginid, loginpwd, "login").get();
+                        String result = new UserService.LoginTask().execute(loginid, loginpwd).get();
 
                         if(result.equals("SUCCESS")) {
                             Toast.makeText(LoginActivity.this, "로그인", Toast.LENGTH_SHORT).show();

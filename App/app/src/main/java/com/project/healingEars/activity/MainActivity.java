@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.R;
 
-import retrofit2.Retrofit;
-import com.project.healingEars.http.service.constants_RestAPI;
-import com.project.healingEars.http.retrofitClient;
+import com.project.healingEars.http.repository.constants_RestAPI;
+//import com.project.healingEars.http.retrofitClient;
 
 public class MainActivity extends AppCompatActivity {
     /*

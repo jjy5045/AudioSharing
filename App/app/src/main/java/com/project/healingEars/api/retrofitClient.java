@@ -1,11 +1,13 @@
-package com.project.healingEars.http;
-import com.project.healingEars.http.service.constants_RestAPI;
+package com.project.healingEars.api;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.project.healingEars.global;
+import com.project.healingEars.http.repository.constants_RestAPI;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class retrofitClient {
-    private static final String BASE_URL = "http://localhost:8080/";
     // 가상머신에서는 개인 서버에 접속할 때 ip주소를 10.0.2.2로 설정
 
     public static constants_RestAPI getApiService() {
@@ -15,9 +17,13 @@ public class retrofitClient {
 
     public static Retrofit getInstance() {
 
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
         Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(BASE_URL);
-        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.baseUrl(global.baseURL);
+        builder.addConverterFactory(GsonConverterFactory.create(gson));
 
         Retrofit retrofit = builder.build();
 

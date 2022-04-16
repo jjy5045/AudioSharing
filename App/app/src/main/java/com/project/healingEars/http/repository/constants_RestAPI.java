@@ -1,4 +1,5 @@
-package com.project.healingEars.http.service;
+package com.project.healingEars.http.repository;
+import com.google.gson.JsonObject;
 import com.project.healingEars.http.vo.UserVO;
 
 import java.util.List;
@@ -6,6 +7,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -21,5 +23,12 @@ public interface constants_RestAPI {
 
     @GET("productDetail/all")
     Call<List<UserVO>> getFunc(@Body UserVO userVO);
+
+    @GET("productDetail/all")
+    Call<String> Info4();
+
+    @Headers("Content-Type: application/json")
+    @POST("users/login")
+    Call<String> loginString(@Body UserVO userVO);
 
 }

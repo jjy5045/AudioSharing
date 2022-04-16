@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import com.project.healingEars.activity.MainActivity;
 import com.project.healingEars.http.dto.ProductRentDTO;
-import com.project.healingEars.http.service.UserService;
+import com.project.healingEars.http.repository.UserRepository;
 
 public class proRentTestActivity extends AppCompatActivity {
 
@@ -53,7 +53,7 @@ public class proRentTestActivity extends AppCompatActivity {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
             //Call<String> stringCall = UserService.getRetrofit(getApplicationContext()).login(userVO);
-            Call<JsonObject> Rent = UserService.getRetrofit(getApplicationContext()).InfoProRent();
+            Call<JsonObject> Rent = UserRepository.getRetrofit(getApplicationContext()).InfoProRent();
             try {
                 //return stringCall.execute().body();
                 //testVO test = objectMapper.readValue(list.execute().body().toString(), testVO.class);

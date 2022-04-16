@@ -22,20 +22,6 @@ public class GalleryViewModel extends ViewModel {
         mText.setValue("This is gallery fragment");
     }
 
-    public void Login() {
-        try{
-            String result = new UserService.LoginTask().execute("loginid", "loginpwd").get();
-
-            if(result.equals("SUCCESS")) {
-
-            } else if(result.equals("FAIL")) {
-
-            }
-            mText.setValue(result);
-        }
-        catch (Exception ignored) {
-        }
-    }
 
     public LiveData<String> getText() {
         return mText;

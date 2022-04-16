@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.home;
+package com.project.healingEars.activity;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,12 +6,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.project.healingEars.http.service.UserService;
 
-public class HomeViewModel extends ViewModel {
-
+public class VmShareViewModel extends ViewModel {
     public MutableLiveData<String> mText;
     public MutableLiveData<String> userNickName;
 
-    public HomeViewModel() {
+    public VmShareViewModel() {
         mText = new MutableLiveData<>();
         userNickName = new MutableLiveData<>();
         mText.setValue("This is home fragment");

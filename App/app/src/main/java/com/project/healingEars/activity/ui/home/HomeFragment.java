@@ -8,31 +8,39 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app.databinding.FragmentHomeBinding;
+import com.project.healingEars.activity.VmShareViewModel;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // 뷰 모델 객체 생성
-        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-
+        // binding 생성
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.btnLogin.setOnClickListener( view -> {
-            //binding.textHome.setText("Change");
-            homeViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString());
-        });
+        // 라이브 데이터를 보고 변경시 refresh 해줌, 이걸 호출했기때문에 viewModel이 변경되면 알아서 다시 그려지는 것임
+        binding.setLifecycleOwner(this);
+
+        // 뷰 모델 객체 생성
+        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        // 뷰 모델 객체를 binding에 꽂아줌
+        binding.setHomeViewModel(homeViewModel);
+
+        binding.btnLogin.setOnClickListener( view -> { homeViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString()); });
 
 
 
+        /*
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        */
         return root;
     }
 
@@ -41,4 +49,5 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

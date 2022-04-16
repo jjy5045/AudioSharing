@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,8 +17,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.app.R;
 import com.example.app.databinding.ActivityHomeBinding;
+import com.example.app.databinding.FragmentHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.project.healingEars.activity.ui.home.HomeViewModel;
 //import com.project.healingEars.viewModel.HomeViewModel;
 
 public class HomeActivity extends AppCompatActivity {
@@ -27,7 +32,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //HomeViewModel viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        //VmShareViewModel viewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
+
+
 
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -41,6 +48,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -52,9 +63,6 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
-
 
     }
 

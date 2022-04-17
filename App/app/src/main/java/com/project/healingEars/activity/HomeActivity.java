@@ -20,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.app.R;
 import com.example.app.databinding.ActivityHomeBinding;
 import com.example.app.databinding.FragmentHomeBinding;
+import com.example.app.databinding.NavHeaderHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.project.healingEars.activity.ui.home.HomeViewModel;
@@ -29,16 +30,22 @@ public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeBinding binding;
+    private NavHeaderHomeBinding navHeaderBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        VmShareViewModel viewModel = new ViewModelProvider(this).get(VmShareViewModel.class);
+
 
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarHome.toolbar);
+
         binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -60,21 +66,20 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header_home, navigationView
+                , false);
+
+        binding.navView.addHeaderView(navHeaderBinding.getRoot());
+
+        navHeaderBinding.setLifecycleOwner(this);
+        navHeaderBinding.setVmShareViewModel(viewModel);
+
 
         binding.setLifecycleOwner(this);
-
-        VmShareViewModel viewModel = new ViewModelProvider(this).get(VmShareViewModel.class);
+        //String name = binding.getVmShareViewModel().userNickName.toString();
 
         binding.setVmShareViewModel(viewModel);
 
-        /*
-        viewModel.userNickName.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                navigationView
-            }
-        });
-         */
 
 
 

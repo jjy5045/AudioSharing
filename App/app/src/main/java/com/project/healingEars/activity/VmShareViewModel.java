@@ -26,9 +26,13 @@ public class VmShareViewModel extends ViewModel {
                 userNickName.setValue("로그인 완료");
             } else if(result.equals("FAIL")) {
                 mText.setValue("로그인실패");
+            } else
+            {
+                mText.setValue("오류");
             }
         }
         catch (Exception ignored) {
+            mText.setValue("통신 오류");
         }
     }
 

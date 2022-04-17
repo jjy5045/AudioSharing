@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="homeViewModel"
-            type="com.project.healingEars.activity.ui.home.HomeViewModel" />
+            name="VmShareModel"
+            type="com.project.healingEars.activity.VmShareViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:text="@{homeViewModel.mText}"
+            android:text="@{VmShareModel.mText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

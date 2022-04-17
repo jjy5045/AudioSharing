@@ -29,8 +29,9 @@ public class GalleryFragment extends Fragment {
         View root = binding.getRoot();
 
 
-
+        /*
         VmShareViewModel homeViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
+
 
        // binding.
 
@@ -40,6 +41,7 @@ public class GalleryFragment extends Fragment {
                 binding.textGallery.setText(s);
             }
         });
+        */
 
         /*
         final TextView textView = binding.textGallery;

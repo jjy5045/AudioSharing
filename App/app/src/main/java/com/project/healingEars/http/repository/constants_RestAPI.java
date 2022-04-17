@@ -1,5 +1,6 @@
 package com.project.healingEars.http.repository;
 import com.google.gson.JsonObject;
+import com.project.healingEars.http.dto.UserDTO;
 import com.project.healingEars.http.vo.UserVO;
 
 import java.util.List;
@@ -29,6 +30,9 @@ public interface constants_RestAPI {
 
     @Headers("Content-Type: application/json")
     @POST("users/login")
-    Call<String> loginString(@Body UserVO userVO);
+    Call<UserDTO> loginString(@Body UserVO userVO);
+
+    @GET("users/logout")
+    Call<String> logout();
 
 }

@@ -24,57 +24,45 @@ public class HomeFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(requireActivity(), "onCreate()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(requireActivity(), "onCreate()", Toast.LENGTH_LONG).show();
     }
 
     public void onStart() {
         super.onStart();
-        Toast.makeText(requireActivity(), "onStart()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(requireActivity(), "onStart()", Toast.LENGTH_LONG).show();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // binding 생성
-        //Toast.makeText(requireActivity(), "onCreateView", Toast.LENGTH_LONG).show();
+        // 액티비티의 View Model 객체 생성(싱글톤)
         VmShareViewModel vmShareViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
+
+        // binding 생성
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        /*
+
         // 라이브 데이터를 보고 변경시 refresh 해줌, 이걸 호출했기때문에 viewModel이 변경되면 알아서 다시 그려지는 것임, xml에 반영
         binding.setLifecycleOwner(this);
-
-        // 뷰 모델 객체 생성
-        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-
         // 뷰 모델 객체를 binding에 꽂아줌, xml에 넣어주는 코드
-        binding.setHomeViewModel(homeViewModel);
-
-        binding.btnLogin.setOnClickListener( view -> { homeViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString()); });
-        */
-
-        binding.setLifecycleOwner(this);
         binding.setVmShareModel(vmShareViewModel);
 
+        // 버튼 클릭시 로그인 Logic 실행
         binding.btnLogin.setOnClickListener(view -> { vmShareViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString()); });
+        binding.btnSignup.setOnClickListener(view -> { vmShareViewModel.Logout();});
 
-
-        /*
+        /* mText를 관찰하여 바뀌면 자동으로 변경해줌
         vmShareViewModel.mText.observe(requireActivity(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 binding.textHome.setText(s);
             }
         });
-
-         */
-        //final TextView textView = binding.textHome;
-        //vmShareViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        Toast.makeText(requireActivity(), "onCreateView()", Toast.LENGTH_LONG).show();
+        */
         return root;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Toast.makeText(requireActivity(), "onViewCreated()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(requireActivity(), "onViewCreated()", Toast.LENGTH_LONG).show();
 
 
     }
@@ -82,17 +70,17 @@ public class HomeFragment extends Fragment {
 
     public void onResume() {
         super.onResume();
-        Toast.makeText(requireActivity(), "onResume()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(requireActivity(), "onResume()", Toast.LENGTH_LONG).show();
     }
 
     public void onStop() {
         super.onStop();
-        Toast.makeText(requireActivity(), "onStop()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(requireActivity(), "onStop()", Toast.LENGTH_LONG).show();
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        Toast.makeText(requireActivity(), "onSaveInstanceState()", Toast.LENGTH_LONG).show();
+        //Toast.makeText(requireActivity(), "onSaveInstanceState()", Toast.LENGTH_LONG).show();
     }
 
     @Override

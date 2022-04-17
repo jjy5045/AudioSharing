@@ -63,6 +63,8 @@ public class UserController {
 	 * ResponseEntity<Map<String, Object>>(response, HttpStatus.OK); }
 	 */
 
+	
+	/*
 	@PostMapping("/login")
 	public ResponseEntity<String> Login(@RequestBody UserValue value, HttpSession session) {
 		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(),
@@ -78,6 +80,24 @@ public class UserController {
 		} //
 			// return Json
 		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	*/
+	
+	@PostMapping("/login")
+	public ResponseEntity<Map<String, Object>> Login(@RequestBody UserValue value, HttpSession session) {
+		Optional<User> oUser = userService.findByUserEmailAndUserPassword(value.getUserEmail(), value.getUserPassword());
+		Map<String, Object> response = new HashMap<>();
+		
+		if (oUser.isPresent()) {
+			response.put("result", "SUCCESS");
+			response.put("user", oUser);
+			session.setAttribute("id", oUser.get().getUserId());
+			session.setAttribute("LOGIN_MEMBER_ID", "USER");
+		} else {
+			response.put("result", "FAIL");
+		} //
+			// return Json
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 
 	@GetMapping("/info")
@@ -103,7 +123,7 @@ public class UserController {
 			//session.setAttribute("loginCheck", null);
 			//session.setAttribute("id", null);
 			session.invalidate();
-			result = "SUCESS";
+			result = "SUCCESS";
 		} else {
 			result = "FAIL";
 		}

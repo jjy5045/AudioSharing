@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
     class BtnOnClickListener implements Button.OnClickListener {
         @Override
         public void onClick(View view) {
+            /*
             switch (view.getId()) {
 
                 case R.id.bt_login: // 로그인 버튼 눌렀을 경우
@@ -118,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
             }
+             */
         }
     }
 

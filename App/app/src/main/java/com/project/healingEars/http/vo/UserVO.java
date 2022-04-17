@@ -25,7 +25,9 @@ public class UserVO {
     public Date userCreateTimestamp;
     public Date userUpdateTimestamp;
 
-
+    public UserVO(String userName) {
+        this.userName = userName;
+    }
     public UserVO(String userEmail, String userPassword) {
         System.out.println("UserVO 생성자 호출");
         this.userEmail = userEmail;

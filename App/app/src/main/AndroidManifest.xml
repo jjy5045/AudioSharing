@@ -19,7 +19,6 @@
         <activity
             android:name="com.project.healingEars.activity.HomeActivity"
             android:exported="true"
-            android:label="@string/title_activity_home"
             android:theme="@style/Theme.App.NoActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

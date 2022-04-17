@@ -1,9 +1,16 @@
 package com.project.healingEars.api;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.project.healingEars.api.interceptor.AddCookiesInterceptor;
+import com.project.healingEars.api.interceptor.ReceivedCookiesInterceptor;
 import com.project.healingEars.global;
 import com.project.healingEars.http.repository.constants_RestAPI;
 
+import java.net.CookieManager;
+
+import okhttp3.JavaNetCookieJar;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,6 +24,10 @@ public class retrofitClient {
 
     public static Retrofit getInstance() {
 
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .cookieJar(new JavaNetCookieJar(new CookieManager()))
+                .build();
+
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -24,6 +35,7 @@ public class retrofitClient {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(global.baseURL);
         builder.addConverterFactory(GsonConverterFactory.create(gson));
+        builder.client(okHttpClient);
 
         Retrofit retrofit = builder.build();
 

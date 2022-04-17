@@ -28,25 +28,10 @@ public class GalleryFragment extends Fragment {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        VmShareViewModel vmShareViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
 
-        /*
-        VmShareViewModel homeViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
-
-
-       // binding.
-
-        homeViewModel.mText.observe(requireActivity(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                binding.textGallery.setText(s);
-            }
-        });
-        */
-
-        /*
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-         */
+        binding.setLifecycleOwner(this);
+        binding.setVmShareModel(vmShareViewModel);
 
         return root;
     }

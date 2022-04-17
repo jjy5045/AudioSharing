@@ -53,6 +53,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.11.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:4.9.0"
+
     def lifecycle_version = "2.5.0-alpha06"
     def arch_version = "2.1.0"
 

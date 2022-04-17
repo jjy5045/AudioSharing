@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,9 +34,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //VmShareViewModel viewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
-
-
 
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -49,9 +48,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-
-
-
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -63,6 +59,24 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        binding.setLifecycleOwner(this);
+
+        VmShareViewModel viewModel = new ViewModelProvider(this).get(VmShareViewModel.class);
+
+        binding.setVmShareViewModel(viewModel);
+
+        /*
+        viewModel.userNickName.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                navigationView
+            }
+        });
+         */
+
+
 
     }
 

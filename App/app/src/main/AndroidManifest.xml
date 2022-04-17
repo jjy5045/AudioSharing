@@ -18,19 +18,19 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name="com.project.healingEars.activity.HomeActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.App.NoActionBar" />
+            android:theme="@style/Theme.App.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <!-- http 접근 허용 -->
         <activity
             android:name="com.project.healingEars.activity.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"/>
     </application>
 
 </manifest>

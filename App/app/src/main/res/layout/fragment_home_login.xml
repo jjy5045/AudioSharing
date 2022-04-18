@@ -1,6 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/app_bar_home">
 
     <data>
         <variable
@@ -11,14 +12,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.project.healingEars.activity.ui.home.HomeFragment">
+        tools:context="com.project.healingEars.activity.ui.home.HomeLoginFragment">
+
 
         <TextView
             android:id="@+id/text_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="300dp"
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
             android:textSize="20sp"
@@ -34,7 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="56dp"
+
+            android:layout_marginTop="200dp"
             android:orientation="vertical"
             android:paddingLeft="32dp"
             android:paddingRight="32dp"
@@ -48,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000000">
+                <!--//android:theme="@style/EditScreenTextInputLayoutStyle">-->
 
                 <EditText
                     android:id="@+id/edt_userId"
@@ -69,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000000">
+                <!--//android:theme="@style/EditScreenTextInputLayoutStyle">-->
 
                 <EditText
                     android:id="@+id/edt_userPassword"
@@ -149,26 +154,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/btn_session"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:background="@drawable/buttonshapewhitebg"
-                android:fontFamily="@font/calibri"
-                android:text="Session"
-                android:textAllCaps="false"
-                android:textColor="#000000"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
         </LinearLayout>
-
-        <!--
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_home_login"/>
-        -->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

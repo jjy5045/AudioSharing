@@ -200,17 +200,17 @@ public class UserController {
 		Map<String, Object> response = new HashMap<>();
 
 		if (session.getAttribute("id") == null) {
-			response.put("로그인 상태가 아님", "FAIL");
+			response.put("loginState", "FAIL");
 			return response;
 		}
 
 		// return oUser.get().getUserEmail();
 		else {
-			response.put("로그인 상태", "OK");
-			response.put("session.getId()", session.getId());
+			response.put("loginState", "OK");
+			response.put("sessionGetID", session.getId());
 			response.put("id", session.getAttribute("id"));
 			// response.put("oUser.get().getUserEmail()", oUser.get().getUserEmail());
-			response.put("권한", session.getAttribute("LOGIN_MEMBER_ID"));
+			response.put("auth", session.getAttribute("LOGIN_MEMBER_ID"));
 			return response;
 		}
 	}

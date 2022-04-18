@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app.databinding.FragmentHomeBinding;
+import com.example.app.databinding.FragmentHomeLoginBinding;
 import com.project.healingEars.activity.VmShareViewModel;
 
 public class HomeFragment extends Fragment {
@@ -45,9 +46,12 @@ public class HomeFragment extends Fragment {
         // 뷰 모델 객체를 binding에 꽂아줌, xml에 넣어주는 코드
         binding.setVmShareModel(vmShareViewModel);
 
+
         // 버튼 클릭시 로그인 Logic 실행
         binding.btnLogin.setOnClickListener(view -> { vmShareViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString()); });
         binding.btnSignup.setOnClickListener(view -> { vmShareViewModel.Logout();});
+        binding.btnSession.setOnClickListener(view -> { vmShareViewModel.SessionInfo();});
+
 
         /* mText를 관찰하여 바뀌면 자동으로 변경해줌
         vmShareViewModel.mText.observe(requireActivity(), new Observer<String>() {

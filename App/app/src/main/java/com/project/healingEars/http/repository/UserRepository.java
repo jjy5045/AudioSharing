@@ -1,51 +1,51 @@
 package com.project.healingEars.http.repository;
 
-import android.content.Context;
-import android.database.Observable;
-
-import com.google.gson.JsonObject;
-import com.project.healingEars.api.APIAdapter;
+import com.project.healingEars.api.retrofitClient;
+import com.project.healingEars.http.dto.SessionDTO;
 import com.project.healingEars.http.dto.UserDTO;
-import com.project.healingEars.http.vo.ProductDetailVO;
 import com.project.healingEars.http.vo.UserVO;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
-public class UserRepository extends APIAdapter {
-    /**
-     * Retrofit 객체를 가져오는 메소드
-     *
-     * @param context
-     * @return
-     */
-    public static SignAPI getRetrofit(Context context) {
-        // 현재 서비스객체의 이름으로 Retrofit 객체를 초기화 하고 반환
-        return (SignAPI) retrofit(context, SignAPI.class);
+public class UserRepository extends retrofitClient {
+
+    public  static UserAPI getRetrofit() {
+        return (UserAPI) getInstance().create(UserAPI.class);
     }
 
-    public interface SignAPI {
+    public interface UserAPI {
+        //통신할 URL을 미리 정의하는 interface
+        //userInfo : POJO(DTO)를 정의해두는 클래스 (직접 클래스를 만들 것이기 때문에 오류는 신경쓰지 않음)
 
-        //함수 선언
+        @GET("getTemp/{userId}")
+        Call<UserVO> getUserInfo(@Path("userId") String userId);
 
+        @POST("getTemp/qqq") //추가예정
+        Call<UserVO> postUserInfo(@Body UserVO userVO);
 
+        @GET("productDetail/all")
+        Call<List<UserVO>> getFunc(@Body UserVO userVO);
+
+        @GET("productDetail/all")
+        Call<String> Info4();
+
+        @Headers("Content-Type: application/json")
+        @POST("users/login")
+        Call<UserDTO> loginString(@Body UserVO userVO);
+
+        @GET("users/logout")
+        Call<String> logout();
+
+        @GET("users/session")
+        Call<SessionDTO> sessionInfo();
+        /*
         //1. 회원 정보 조회
         //Get방식, 주소가 고정되지 않는 상황에서는 @Path를 통해 주소를 다이나믹하게 넣을 수 있습니다.
         //Json형식에 맞게 Bean 객체를 만들어 두면 설정한 Parser가 자동으로 컨버팅해 돌려 줍니다.
@@ -63,14 +63,14 @@ public class UserRepository extends APIAdapter {
         @GET("productRent/all")
         Call<JsonObject> InfoProRent();
 
-        /**
-         * 회원가입 메소드
-         *
-         * @param email
-         * @param pwd
-         * @param nickname
-         * @return
-         */
+        //
+         // 회원가입 메소드
+         //
+         // @param email
+         // @param pwd
+         // @param nickname
+         // @return
+         //
         //@FormUrlEncoded
         //URL encoding하여 보냅니다. --- application/x-www-form-urlencoded
         //POST 방식, 파라메터는 @Field("파라메터명") 으로 보낼 수 있습니다.
@@ -136,7 +136,7 @@ public class UserRepository extends APIAdapter {
         //Rxandroid : 안드로이드에서 Observer 패턴, Iterator 패턴을 사용 할 수 있게 하는 라이브러리
         @GET("project")
         Observable<JsonObject> Project();
-
+         */
 
     }
 }

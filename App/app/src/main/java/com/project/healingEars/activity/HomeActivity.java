@@ -3,6 +3,7 @@ package com.project.healingEars.activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.webkit.CookieSyncManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -23,6 +25,8 @@ import com.example.app.databinding.FragmentHomeBinding;
 import com.example.app.databinding.NavHeaderHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.project.healingEars.activity.ui.home.HomeFragment;
+import com.project.healingEars.activity.ui.home.HomeLoginFragment;
 import com.project.healingEars.activity.ui.home.HomeViewModel;
 //import com.project.healingEars.viewModel.HomeViewModel;
 
@@ -30,14 +34,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeBinding binding;
-
-
+    private HomeFragment homeFragmentBinding;
     private NavHeaderHomeBinding navHeaderBinding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // 싱글톤으로 보장받는 액티비티 View Mdoel 생성
         VmShareViewModel vmShareViewModel = new ViewModelProvider(this).get(VmShareViewModel.class);
 
@@ -78,6 +82,33 @@ public class HomeActivity extends AppCompatActivity {
         navHeaderBinding.setLifecycleOwner(this);
         // ViewModel 을 네비게이션 뷰에 박아줌
         navHeaderBinding.setVmShareViewModel(vmShareViewModel);
+
+
+
+        /////////////////homeFragmentBinding = HomeLoginFragment.bind(binding.)
+
+
+
+        /*
+        vmShareViewModel.loginState.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if(s.equals("ON")) {
+                    //getSupportFragmentManager  는 FragmentActivity 의 메소드입니다.
+                    //
+                    //Fragment에서 부르시니 모르는 함수라고 오류가 날수 밖에 없습니다.
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, ExampleFragment.class, null)
+                            .setReorderingAllowed(true)
+                            .addToBackStack("name") // name can be null
+                            .commit();
+                }
+            }
+        });
+
+
+         */
     }
 
     @Override

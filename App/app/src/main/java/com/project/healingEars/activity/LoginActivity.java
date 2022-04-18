@@ -18,9 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.example.app.R;
-import com.project.healingEars.activity.test.TestActivity;
 import com.project.healingEars.api.preference.CookieSharedPreference;
-import com.project.healingEars.http.repository.UserRepository;
 import com.project.healingEars.http.service.UserService;
 import com.project.healingEars.http.vo.UserVO;
 

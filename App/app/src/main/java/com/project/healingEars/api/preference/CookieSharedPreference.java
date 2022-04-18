@@ -25,7 +25,6 @@ public class CookieSharedPreference {
         pref = context.getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
     }
 
-
     public void setUserID(String userID){
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(KEY_USER_ID, userID);

@@ -30,4 +30,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_my_info">내 정보</string>
+    <string name="menu_introduce">힐링이어 소개</string>
+    <string name="menu_station">스테이션 정보</string>
+    <string name="menu_product">제품 정보</string>
+    <string name="menu_review">게시판</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

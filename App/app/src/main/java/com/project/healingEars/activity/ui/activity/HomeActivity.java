@@ -1,18 +1,10 @@
-package com.project.healingEars.activity;
+package com.project.healingEars.activity.ui.activity;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.webkit.CookieSyncManager;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -21,21 +13,21 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.app.R;
 import com.example.app.databinding.ActivityHomeBinding;
-import com.example.app.databinding.FragmentHomeBinding;
 import com.example.app.databinding.NavHeaderHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.project.healingEars.activity.ui.home.HomeFragment;
-import com.project.healingEars.activity.ui.home.HomeLoginFragment;
-import com.project.healingEars.activity.ui.home.HomeViewModel;
-//import com.project.healingEars.viewModel.HomeViewModel;
+import com.project.healingEars.activity.BlankFragment;
+import com.project.healingEars.activity.VmShareViewModel;
+import com.project.healingEars.activity.ui.myinfo.LoginChildFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeBinding binding;
-    private HomeFragment homeFragmentBinding;
     private NavHeaderHomeBinding navHeaderBinding;
+
+    LoginChildFragment loginChildFragment = new LoginChildFragment();
+    BlankFragment blankFragment = new BlankFragment();
 
 
     @Override
@@ -45,20 +37,24 @@ public class HomeActivity extends AppCompatActivity {
         // 싱글톤으로 보장받는 액티비티 View Mdoel 생성
         VmShareViewModel vmShareViewModel = new ViewModelProvider(this).get(VmShareViewModel.class);
 
+        // 뷰 바인딩
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        // 홈뷰에 설정된 ViewModel 값이 변경될 때 마다 UI 업데이트
+        binding.setLifecycleOwner(this);
+        // ViewModel을 뷰에 넣어줌
+        binding.setVmShareViewModel(vmShareViewModel);
+
+        // 네비게이션 뷰
+        navHeaderBinding = NavHeaderHomeBinding.bind(binding.navView.getHeaderView(0));
+        navHeaderBinding.setLifecycleOwner(this);
+        navHeaderBinding.setVmShareViewModel(vmShareViewModel);
+
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarHome.toolbar);
 
-        binding.setLifecycleOwner(this);
-        binding.setVmShareViewModel(vmShareViewModel);
-
-        binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.appBarHome.fab.setOnClickListener(view ->
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+                .setAction("Action", null).show());
 
 
         DrawerLayout drawer = binding.drawerLayout;
@@ -67,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_my_info, R.id.nav_station, R.id.nav_product, R.id.nav_review, R.id.nav_introduce)
                 .setOpenableLayout(drawer)
                 .build();
 
@@ -76,12 +72,25 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        // 네비게이션 뷰 바인딩
-        navHeaderBinding = NavHeaderHomeBinding.bind(binding.navView.getHeaderView(0));
-        // 네비게이션에 설정된 ViewModel 값이 변경될 때 마다 UI 업데이트
-        navHeaderBinding.setLifecycleOwner(this);
-        // ViewModel 을 네비게이션 뷰에 박아줌
-        navHeaderBinding.setVmShareViewModel(vmShareViewModel);
+
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commitAllowingStateLoss();
+
+        vmShareViewModel.loginState.observe(this, s -> {
+            if (s.equals("LOGIN")) getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commitAllowingStateLoss();
+            else if(s.equals("LOGOUT")) getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commitAllowingStateLoss();
+        });
+
+        /*
+        vmShareViewModel.loginState.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (s.equals("ON"))
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commitAllowingStateLoss();
+            }
+        });
+         */
+
 
 
 

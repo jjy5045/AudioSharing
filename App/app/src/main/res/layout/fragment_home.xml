@@ -4,164 +4,33 @@
 
     <data>
         <variable
-            name="VmShareModel"
+            name="VmShareViewModel"
             type="com.project.healingEars.activity.VmShareViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.project.healingEars.activity.ui.home.HomeFragment">
-
-        <TextView
-            android:id="@+id/text_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:text="@{VmShareModel.mText}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        tools:context="com.project.healingEars.activity.ui.myinfo.MyInfoFragment">
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="56dp"
-            android:orientation="vertical"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_home1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="#000000">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <EditText
-                    android:id="@+id/edt_userId"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@android:color/white"
-                    android:backgroundTintMode="multiply"
-                    android:drawableEnd="@drawable/ic_email_white_24dp"
-                    android:drawablePadding="16dp"
-                    android:fontFamily="@font/calibri"
-                    android:hint="ID"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            </androidx.fragment.app.FragmentContainerView>
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_home2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="#000000">
-
-                <EditText
-                    android:id="@+id/edt_userPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@android:color/white"
-                    android:backgroundTintMode="multiply"
-                    android:drawableRight="@drawable/ic_lock_white_24dp"
-                    android:drawablePadding="16dp"
-                    android:fontFamily="@font/calibri"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_signup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:background="@drawable/buttonshapewhitebg"
-                    android:fontFamily="@font/calibri"
-                    android:text="@string/strBtnSignUp"
-                    android:textAllCaps="false"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:background="@drawable/buttonshapewhitebg"
-                    android:fontFamily="@font/calibri"
-                    android:text="Sign in"
-                    android:textAllCaps="false"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/calibri"
-                android:text="Forgot Password?"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/text_session"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:text="@{VmShareModel.session}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/btn_session"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:background="@drawable/buttonshapewhitebg"
-                android:fontFamily="@font/calibri"
-                android:text="Session"
-                android:textAllCaps="false"
-                android:textColor="#000000"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            </androidx.fragment.app.FragmentContainerView>
         </LinearLayout>
 
         <!--

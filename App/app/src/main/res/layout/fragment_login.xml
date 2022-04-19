@@ -1,30 +1,28 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/app_bar_home">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="VmShareModel"
+            name="VmShareViewModel"
             type="com.project.healingEars.activity.VmShareViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.project.healingEars.activity.ui.home.HomeLoginFragment">
-
+        tools:context="com.project.healingEars.activity.ui.myinfo.LoginChildFragment">
 
         <TextView
             android:id="@+id/text_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:text="@{VmShareModel.mText}"
+            android:text="@{VmShareViewModel.mText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,8 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="56dp"
             android:orientation="vertical"
             android:paddingLeft="32dp"
             android:paddingRight="32dp"
@@ -51,7 +48,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000000">
-                <!--//android:theme="@style/EditScreenTextInputLayoutStyle">-->
 
                 <EditText
                     android:id="@+id/edt_userId"
@@ -73,7 +69,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000000">
-                <!--//android:theme="@style/EditScreenTextInputLayoutStyle">-->
 
                 <EditText
                     android:id="@+id/edt_userPassword"
@@ -148,12 +143,32 @@
                 android:layout_marginEnd="8dp"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:text="@{VmShareModel.session}"
+                android:text="@{VmShareViewModel.session}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/btn_session"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/buttonshapewhitebg"
+                android:fontFamily="@font/calibri"
+                android:text="Session"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
         </LinearLayout>
+
+        <!--
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_home_login"/>
+        -->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

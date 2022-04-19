@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.slideshow;
+package com.project.healingEars.activity.ui.product;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,18 +12,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app.databinding.FragmentSlideshowBinding;
 
-public class SlideshowFragment extends Fragment {
+public class ProductFragment extends Fragment {
 
     private FragmentSlideshowBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel = new ViewModelProvider(this).get(SlideshowViewModel.class);
+        ProductViewModel productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        productViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

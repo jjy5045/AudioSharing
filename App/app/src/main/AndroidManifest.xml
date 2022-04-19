@@ -17,7 +17,7 @@
         android:theme="@style/Theme.App"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.project.healingEars.activity.HomeActivity"
+            android:name="com.project.healingEars.activity.ui.activity.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.App.NoActionBar">
         <intent-filter>

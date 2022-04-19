@@ -1,4 +1,4 @@
-package com.project.healingEars.activity;
+package com.project.healingEars.activity.ui.introduce;
 
 import android.os.Bundle;
 

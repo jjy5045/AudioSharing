@@ -4,7 +4,7 @@
     <data>
         <variable
             name="VmShareViewModel"
-            type="com.project.healingEars.activity.VmShareViewModel" />
+            type="com.project.healingEars.activity.ui.activity.VmShareViewModel" />
     </data>
 <LinearLayout
 

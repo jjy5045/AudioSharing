@@ -16,8 +16,7 @@ import com.example.app.databinding.ActivityHomeBinding;
 import com.example.app.databinding.NavHeaderHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.project.healingEars.activity.BlankFragment;
-import com.project.healingEars.activity.VmShareViewModel;
+import com.project.healingEars.activity.ui.introduce.BlankFragment;
 import com.project.healingEars.activity.ui.myinfo.LoginChildFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -63,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_my_info, R.id.nav_station, R.id.nav_product, R.id.nav_review, R.id.nav_introduce)
+                R.id.nav_my_info, R.id.nav_announce, R.id.nav_station, R.id.nav_product, R.id.nav_board, R.id.nav_introduce_HE)
                 .setOpenableLayout(drawer)
                 .build();
 
@@ -71,15 +70,17 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-
-
+        /*
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commitAllowingStateLoss();
 
         vmShareViewModel.loginState.observe(this, s -> {
-            if (s.equals("LOGIN")) getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commitAllowingStateLoss();
-            else if(s.equals("LOGOUT")) getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commitAllowingStateLoss();
+            if (s.equals("LOGOUT")) { getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commit(); }
+            else if(s.equals("LOGIN")) getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commitAllowingStateLoss();
         });
+
+         */
+
+
 
         /*
         vmShareViewModel.loginState.observe(this, new Observer<String>() {

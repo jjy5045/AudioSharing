@@ -4,7 +4,7 @@
     <data>
         <variable
             name="VmShareModel"
-            type="com.project.healingEars.activity.VmShareViewModel" />
+            type="com.project.healingEars.activity.ui.activity.VmShareViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

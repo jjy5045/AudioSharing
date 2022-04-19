@@ -10,16 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.app.databinding.FragmentSlideshowBinding;
+import com.example.app.databinding.FragmentProductBinding;
 
 public class ProductFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentProductBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ProductViewModel productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentProductBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;

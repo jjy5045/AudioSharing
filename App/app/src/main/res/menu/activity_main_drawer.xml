@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_my_info" />
         <item
+            android:id="@+id/nav_announce"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_announce" />
+        <item
             android:id="@+id/nav_station"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_station" />
@@ -17,11 +21,11 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_product" />
         <item
-            android:id="@+id/nav_review"
+            android:id="@+id/nav_board"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_review" />
         <item
-            android:id="@+id/nav_introduce"
+            android:id="@+id/nav_introduce_HE"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_introduce" />
     </group>

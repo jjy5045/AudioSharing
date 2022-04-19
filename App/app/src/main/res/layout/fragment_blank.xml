@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.project.healingEars.activity.BlankFragment">
+    tools:context="com.project.healingEars.activity.ui.introduce.BlankFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <!--

@@ -3,18 +3,15 @@ package com.project.healingEars.activity.ui.myinfo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.app.R;
 import com.example.app.databinding.FragmentLoginBinding;
-import com.project.healingEars.activity.BlankFragment;
-import com.project.healingEars.activity.VmShareViewModel;
+import com.project.healingEars.activity.ui.introduce.BlankFragment;
+import com.project.healingEars.activity.ui.activity.VmShareViewModel;
 
 public class LoginChildFragment extends Fragment {
     private FragmentLoginBinding binding;
@@ -40,6 +37,8 @@ public class LoginChildFragment extends Fragment {
         binding.btnLogin.setOnClickListener(view -> { vmShareViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString()); });
         binding.btnSignup.setOnClickListener(view -> { vmShareViewModel.Logout();});
         binding.btnSession.setOnClickListener(view -> { vmShareViewModel.SessionInfo();});
+
+
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_login, container, false);

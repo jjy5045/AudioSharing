@@ -11,19 +11,28 @@
         android:id="@+id/nav_my_info"
         android:name="com.project.healingEars.activity.ui.myinfo.MyInfoFragment"
         android:label="menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_myinfo" >
+        <action
+            android:id="@+id/action_nav_my_info_to_nav_introduce2"
+            app:destination="@id/nav_introduce_HE" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_station"
         android:name="com.project.healingEars.activity.ui.station.StationFragment"
         android:label="menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_station" />
 
     <fragment
         android:id="@+id/nav_product"
         android:name="com.project.healingEars.activity.ui.product.ProductFragment"
         android:label="menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_product" />
+    <fragment
+        android:id="@+id/nav_introduce_HE"
+        android:name="com.project.healingEars.activity.ui.introduce.BlankFragment"
+        android:label="menu_slideshow"
+        tools:layout="@layout/fragment_blank" />
 
 
 </navigation>

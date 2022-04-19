@@ -1,4 +1,4 @@
-package com.project.healingEars.activity;
+package com.project.healingEars.activity.ui.activity;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -33,7 +33,7 @@ public class VmShareViewModel extends ViewModel {
         session.setValue("초기값");
         mText.setValue("This is home fragment");
         userNickName.setValue("Android Studio");
-        loginState.setValue("OFF");
+        loginState.setValue("LOGOUT");
     }
 
     public void Login(String userId, String userPassword) {
@@ -44,7 +44,7 @@ public class VmShareViewModel extends ViewModel {
                 mText.setValue("로그인성공");
                 userVO.setValue(result.body().user);
                 userNickName.setValue(userVO.getValue().userEmail);
-                loginState.setValue("ON");
+                loginState.setValue("LOGIN");
             } else if ((result.body().result).equals("FAIL")) {
                 mText.setValue("로그인실패");
             } else {
@@ -63,7 +63,7 @@ public class VmShareViewModel extends ViewModel {
                 UserVO user = new UserVO("로그인이 필요합니다.");
                 userVO.setValue(user);
                 mText.setValue("로그아웃 성공");
-                loginState.setValue("OFF");
+                loginState.setValue("LOGOUT");
             } else if (result.equals("FAIL")) {
                 mText.setValue("로그아웃 실패");
             }

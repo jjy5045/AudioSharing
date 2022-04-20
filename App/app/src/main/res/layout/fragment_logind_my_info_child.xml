@@ -2,20 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.project.healingEars.activity.ui.introduce.BlankFragment">
+    tools:context="com.project.healingEars.activity.ui.myinfo.LogindMyInfoChildFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black">
-    </LinearLayout>
-    -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:gravity="center"/>
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

@@ -3,6 +3,7 @@ package com.project.healingEars.activity.ui.activity;
 import android.os.Bundle;
 import android.view.Menu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,8 +17,7 @@ import com.example.app.databinding.ActivityHomeBinding;
 import com.example.app.databinding.NavHeaderHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.project.healingEars.activity.ui.introduce.BlankFragment;
-import com.project.healingEars.activity.ui.myinfo.LoginChildFragment;
+import com.project.healingEars.activity.ui.myinfo.MyInfoFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -25,9 +25,15 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private NavHeaderHomeBinding navHeaderBinding;
 
-    LoginChildFragment loginChildFragment = new LoginChildFragment();
-    BlankFragment blankFragment = new BlankFragment();
+    private MyInfoFragment myInfoFrament;
 
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //outState.putBoolean(IS_EDITING_KEY, isEditing);
+        //outState.putString(RANDOM_GOOD_DEED_KEY, randomGoodDeed);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,17 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
+        /*
+        if(myInfoFrament == null) {
+            myInfoFrament = new MyInfoFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_home1, myInfoFrament).commit();
+        }
+        if(myInfoFrament != null) getSupportFragmentManager().beginTransaction().show(myInfoFrament).commit();
+
+         */
 
         /*
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commitAllowingStateLoss();
@@ -125,6 +142,8 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+
+        //menu.getItem(R.id.nav_board).setVisible(false);
         return true;
     }
 
@@ -134,4 +153,6 @@ public class HomeActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }

@@ -13,8 +13,11 @@
         android:label="menu_home"
         tools:layout="@layout/fragment_myinfo" >
         <action
-            android:id="@+id/action_nav_my_info_to_nav_introduce2"
-            app:destination="@id/nav_introduce_HE" />
+            android:id="@+id/action_nav_my_info_to_nav_temp"
+            app:destination="@id/nav_temp" />
+        <action
+            android:id="@+id/action_nav_my_info_to_nav_login_my_info"
+            app:destination="@id/nav_login_my_info" />
     </fragment>
 
     <fragment
@@ -29,10 +32,22 @@
         android:label="menu_slideshow"
         tools:layout="@layout/fragment_product" />
     <fragment
-        android:id="@+id/nav_introduce_HE"
-        android:name="com.project.healingEars.activity.ui.introduce.BlankFragment"
+        android:id="@+id/nav_introduce"
+        android:name="com.project.healingEars.activity.ui.introduce.IntroduceFragment"
         android:label="menu_slideshow"
-        tools:layout="@layout/fragment_blank" />
+        tools:layout="@layout/fragment_introduce" />
+
+    <fragment
+        android:id="@+id/nav_temp"
+        android:name="com.project.healingEars.activity.ui.myinfo.TempFragment"
+        android:label="menu_slideshow"
+        tools:layout="@layout/fragment_temp" />
+
+    <fragment
+        android:id="@+id/nav_login_my_info"
+        android:name="com.project.healingEars.activity.ui.myinfo.LogindMyInfoChildFragment"
+        android:label="menu_slideshow"
+        tools:layout="@layout/fragment_logind_my_info_child" />
 
 
 </navigation>

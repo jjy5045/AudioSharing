@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.myinfo;
+package com.project.healingEars.activity.ui.introduce;
 
 import android.os.Bundle;
 
@@ -9,34 +9,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.app.R;
+import com.example.app.databinding.FragmentIntroduceBinding;
 import com.example.app.databinding.FragmentLoginBinding;
-import com.project.healingEars.activity.ui.introduce.IntroduceFragment;
 import com.project.healingEars.activity.ui.activity.VmShareViewModel;
 
-public class LoginChildFragment extends Fragment {
-    private FragmentLoginBinding binding;
-    IntroduceFragment introduceFragment;
+
+public class IntroduceFragment extends Fragment {
+    FragmentIntroduceBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
 
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         VmShareViewModel vmShareViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
 
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        binding = FragmentIntroduceBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         binding.setLifecycleOwner(this);
         binding.setVmShareViewModel(vmShareViewModel);
-
-        binding.btnLogin.setOnClickListener(view -> { vmShareViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString()); });
-        binding.btnSignup.setOnClickListener(view -> { vmShareViewModel.Logout(); });
-        binding.btnSession.setOnClickListener(view -> { vmShareViewModel.SessionInfo();});
 
 
         //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_introduce2);

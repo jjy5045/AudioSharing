@@ -7,20 +7,19 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.app.R;
 import com.example.app.databinding.FragmentMyinfoBinding;
-import com.example.app.databinding.FragmentLoginBinding;
-import com.project.healingEars.activity.ui.introduce.BlankFragment;
+import com.project.healingEars.activity.ui.introduce.IntroduceFragment;
 import com.project.healingEars.activity.ui.activity.VmShareViewModel;
 
 public class MyInfoFragment extends Fragment {
     //private Context context;
     private FragmentMyinfoBinding binding;
 
-    BlankFragment blankFragment;
+    IntroduceFragment introduceFragment;
     LoginChildFragment loginChildFragment;
 
 
@@ -30,19 +29,12 @@ public class MyInfoFragment extends Fragment {
         loginChildFragment = new LoginChildFragment();
         getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commit();
 
-        /* https://developer.android.com/guide/fragments/saving-state?hl=ko
-        if (savedInstanceState != null) {
-            isEditing = savedInstanceState.getBoolean(IS_EDITING_KEY, false);
-            randomGoodDeed = savedInstanceState.getString(RANDOM_GOOD_DEED_KEY);
-        } else {
-            randomGoodDeed = viewModel.generateRandomGoodDeed();
-        }
-         */
-        //Toast.makeText(requireActivity(), "onCreate()", Toast.LENGTH_LONG).show();
     }
 
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
+
         /*
         outState.putBoolean(IS_EDITING_KEY, isEditing);
         outState.putString(RANDOM_GOOD_DEED_KEY, randomGoodDeed);
@@ -68,21 +60,35 @@ public class MyInfoFragment extends Fragment {
         // 뷰 모델 객체를 binding에 꽂아줌, xml에 넣어주는 코드
         binding.setVmShareViewModel(vmShareViewModel);
 
-        /*
-        if((vmShareViewModel.loginState.getValue()).equals("LOGOUT")) {
-            getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commitAllowingStateLoss();
-        }
+        if((vmShareViewModel.loginState.getValue()).equals("LOGIN")) binding.fragmentHome1.setVisibility(View.GONE);
+        //else if ((vmShareViewModel.loginState.getValue()).equals("LOGOUT")) binding.fragmentHome2.setVisibility(View.GONE);
 
-         */
+
+        vmShareViewModel.mText.observe(requireActivity(), s -> {
+            if(s.equals("로그인성공")) {
+                vmShareViewModel.mText.setValue("로그인완료");
+                //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_temp);
+                Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_login_my_info);
+
+            }
+        });
+
+
+
+        //getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commitAllowingStateLoss();
+
+        //Navigation.findNavController(MyInfoFragment.this).navigate(R.id.action_nav_my_info_to_nav_introduce2);
+        //Navigation.findNavController(require11111Activity()).navigate();
         // https://black-jin0427.tistory.com/118
-        if( loginChildFragment != null)
 
 
-
+        /*
         vmShareViewModel.loginState.observe(requireActivity(), s -> {
             if (s.equals("LOGIN")) { getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commit(); }
             else if(s.equals("LOGOUT")) getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commit();
         });
+
+         */
         //getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, getParentFragmentManager().findFragmentByTag("Tag")).commit();
         /*
         vmShareViewModel.loginState.observe(requireActivity(), s -> {

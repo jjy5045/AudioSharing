@@ -14,11 +14,11 @@ import java.util.concurrent.ExecutionException;
 import retrofit2.Response;
 
 public class VmShareViewModel extends ViewModel {
-    public MutableLiveData<String> mText;
     public MutableLiveData<String> userNickName;
     public MutableLiveData<UserVO> userVO;
     public MutableLiveData<String> session;
     public MutableLiveData<String> loginState;
+    public MutableLiveData<String> mText;
 
 
     public VmShareViewModel() {
@@ -31,7 +31,7 @@ public class VmShareViewModel extends ViewModel {
         UserVO user = new UserVO("로그인 해주세요");
         userVO.setValue(user);
         session.setValue("초기값");
-        mText.setValue("This is home fragment");
+        mText.setValue("로그인실패");
         userNickName.setValue("Android Studio");
         loginState.setValue("LOGOUT");
     }
@@ -51,7 +51,7 @@ public class VmShareViewModel extends ViewModel {
                 mText.setValue("오류");
             }
         } catch (Exception ignored) {
-            mText.setValue("통신 오류");
+            mText.setValue("서버오류");
         }
     }
 
@@ -65,7 +65,8 @@ public class VmShareViewModel extends ViewModel {
                 mText.setValue("로그아웃 성공");
                 loginState.setValue("LOGOUT");
             } else if (result.equals("FAIL")) {
-                mText.setValue("로그아웃 실패");
+                loginState.setValue("LOGIN");
+                //loginResult.setValue("로그아웃 실패");
             }
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -91,11 +92,11 @@ public class VmShareViewModel extends ViewModel {
     }
 
 
-    public LiveData<String> getText() {
-        return mText;
-    }
+    public LiveData<String> getmText() { return mText; }
 
     public LiveData<String> getUserNickName() {
         return userNickName;
     }
+
+    public MutableLiveData<UserVO> getUserVO() { return userVO; }
 }

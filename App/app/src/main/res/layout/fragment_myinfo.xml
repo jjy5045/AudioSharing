@@ -14,12 +14,14 @@
         tools:context="com.project.healingEars.activity.ui.myinfo.MyInfoFragment">
 
         <LinearLayout
+            android:id="@+id/fragment_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_home1"
+                android:name="com.project.healingEars.activity.ui.myinfo.LoginChildFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -27,6 +29,7 @@
             </androidx.fragment.app.FragmentContainerView>
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_home2"
+                android:name="com.project.healingEars.activity.ui.introduce.IntroduceFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">

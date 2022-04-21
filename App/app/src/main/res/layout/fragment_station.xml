@@ -2,28 +2,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="androidx.databinding.ObservableArrayList"/>
         <variable
             name="VmShareModel"
-            type="com.project.healingEars.activity.ui.ui.VmShareViewModel" />
+            type="com.project.healingEars.activity.ui.VmShareViewModel" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context="com.project.healingEars.activity.ui.station.StationFragment">
 
-        <TextView
-            android:id="@+id/text_gallery"
-            android:text="스테이션"
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/station_recycler"
+            android:layout_width="409dp"
+            android:layout_height="354dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp" />
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:gravity="center"
+            android:text="버튼"/>
+
+
+    </LinearLayout>
 </layout>

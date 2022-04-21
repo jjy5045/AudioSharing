@@ -1,4 +1,6 @@
-package com.project.healingEars.activity.ui.ui;
+package com.project.healingEars.activity.ui;
+
+import android.annotation.SuppressLint;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -7,18 +9,26 @@ import androidx.lifecycle.ViewModel;
 import com.project.healingEars.http.dto.SessionDTO;
 import com.project.healingEars.http.dto.UserDTO;
 import com.project.healingEars.http.service.UserService;
+import com.project.healingEars.http.vo.StationListVO;
 import com.project.healingEars.http.vo.UserVO;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import retrofit2.Response;
 
 public class VmShareViewModel extends ViewModel {
     public MutableLiveData<String> userNickName;
-    public MutableLiveData<UserVO> userVO;
     public MutableLiveData<String> session;
     public MutableLiveData<String> loginState;
     public MutableLiveData<String> mText;
+
+    public MutableLiveData<UserVO> userVO;
+    public MutableLiveData<StationListVO> stationListVO;
 
 
     public VmShareViewModel() {
@@ -65,7 +75,8 @@ public class VmShareViewModel extends ViewModel {
                 mText.setValue("로그아웃 성공");
                 loginState.setValue("LOGOUT");
             } else if (result.equals("FAIL")) {
-                loginState.setValue("LOGIN");
+                mText.setValue("로그아웃 실패");
+                //loginState.setValue("LOGIN");
                 //loginResult.setValue("로그아웃 실패");
             }
         } catch (ExecutionException e) {
@@ -90,7 +101,6 @@ public class VmShareViewModel extends ViewModel {
             session.setValue("에러");
         }
     }
-
 
     public LiveData<String> getmText() { return mText; }
 

@@ -51,7 +51,7 @@ public class StationController {
 		List<StationList> LStationList = stationListSerivce.findAll();
 		if (!LStationList.isEmpty()) {
 			response.put("result", "SUCCESS");
-			response.put("user", LStationList);
+			response.put("station", LStationList);
 		} else {
 			response.put("result", "FAIL");
 			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");

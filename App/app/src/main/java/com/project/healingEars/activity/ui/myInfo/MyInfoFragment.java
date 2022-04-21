@@ -4,23 +4,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.example.app.R;
+import com.example.app.databinding.FragmentLoginMyInfoChildBinding;
 import com.example.app.databinding.FragmentMyinfoBinding;
 import com.project.healingEars.activity.ui.introduce.IntroduceFragment;
-import com.project.healingEars.activity.ui.ui.VmShareViewModel;
+import com.project.healingEars.activity.ui.VmShareViewModel;
 
 public class MyInfoFragment extends Fragment {
     //private Context context;
     private FragmentMyinfoBinding binding;
-
-    IntroduceFragment introduceFragment;
     LoginChildFragment loginChildFragment;
+
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -54,24 +54,36 @@ public class MyInfoFragment extends Fragment {
         // binding 생성
         binding = FragmentMyinfoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         // 라이브 데이터를 보고 변경시 refresh 해줌, 이걸 호출했기때문에 viewModel이 변경되면 알아서 다시 그려지는 것임, xml에 반영
         binding.setLifecycleOwner(this);
         // 뷰 모델 객체를 binding에 꽂아줌, xml에 넣어주는 코드
         binding.setVmShareViewModel(vmShareViewModel);
 
-        if((vmShareViewModel.loginState.getValue()).equals("LOGIN")) binding.fragmentHome1.setVisibility(View.GONE);
-        //else if ((vmShareViewModel.loginState.getValue()).equals("LOGOUT")) binding.fragmentHome2.setVisibility(View.GONE);
 
 
+        // 기존 if는 뷰 생성할 때 한번 실행되는거라 로그인하고 바로나서는 변경되지 않았던 것
+        //if((vmShareViewModel.loginState.getValue()).equals("LOGIN")) binding.fragmentHome1.setVisibility(View.GONE);
+
+        // 로그인 상태에서는 로그인창 숨기기
+        vmShareViewModel.loginState.observe(requireActivity(), s -> {
+            if(s.equals("LOGIN")) binding.fragmentHome1.setVisibility(View.GONE);
+            else if(s.equals("LOGOUT")) binding.fragmentHome1.setVisibility(View.VISIBLE);
+        });
+
+
+
+
+        /*
         vmShareViewModel.mText.observe(requireActivity(), s -> {
             if(s.equals("로그인성공")) {
                 vmShareViewModel.mText.setValue("로그인완료");
                 //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_temp);
-                Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_temp);
-
+                //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_temp);
+                Navigation.findNavController(root).navigate(R.id.action_nav_my_info_self);
+                Toast.makeText(requireActivity(), "로그인에 성공했습니다.", Toast.LENGTH_LONG).show();
             }
         });
+         */
 
 
 

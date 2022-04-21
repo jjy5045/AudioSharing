@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app.databinding.FragmentStationBinding;
-import com.project.healingEars.activity.ui.ui.VmShareViewModel;
+import com.project.healingEars.activity.ui.VmShareViewModel;
 
 
 public class StationFragment extends Fragment {
@@ -27,6 +27,8 @@ public class StationFragment extends Fragment {
 
         binding.setLifecycleOwner(this);
         binding.setVmShareModel(vmShareViewModel);
+
+
 
         return root;
     }

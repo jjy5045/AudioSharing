@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.app.databinding.FragmentIntroduceBinding;
-import com.project.healingEars.activity.ui.ui.VmShareViewModel;
+import com.project.healingEars.activity.ui.VmShareViewModel;
 
 
 public class IntroduceFragment extends Fragment {

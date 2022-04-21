@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.ui;
+package com.project.healingEars.activity.ui;
 
 import android.os.Bundle;
 import android.view.Menu;

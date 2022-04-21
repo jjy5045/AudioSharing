@@ -5,7 +5,7 @@
     <data>
         <variable
             name="VmShareViewModel"
-            type="com.project.healingEars.activity.ui.ui.VmShareViewModel" />
+            type="com.project.healingEars.activity.ui.VmShareViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
                 android:name="com.project.healingEars.activity.ui.myInfo.LoginChildFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                >
 
             </androidx.fragment.app.FragmentContainerView>
             <androidx.fragment.app.FragmentContainerView
@@ -32,7 +32,7 @@
                 android:name="com.project.healingEars.activity.ui.myInfo.LoginMyInfoChildFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                >
             </androidx.fragment.app.FragmentContainerView>
         </LinearLayout>
 

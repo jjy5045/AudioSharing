@@ -11,21 +11,13 @@ import android.view.ViewGroup;
 
 import com.example.app.databinding.FragmentLoginBinding;
 import com.project.healingEars.activity.ui.introduce.IntroduceFragment;
-import com.project.healingEars.activity.ui.ui.VmShareViewModel;
+import com.project.healingEars.activity.ui.VmShareViewModel;
 
 public class LoginChildFragment extends Fragment {
     private FragmentLoginBinding binding;
-    IntroduceFragment introduceFragment;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         VmShareViewModel vmShareViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
 
         binding = FragmentLoginBinding.inflate(inflater, container, false);
@@ -48,5 +40,17 @@ public class LoginChildFragment extends Fragment {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_login, container, false);
         return root;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        //Toast.makeText(requireActivity(), "onDestroyView()", Toast.LENGTH_LONG).show();
+        binding = null;
     }
 }

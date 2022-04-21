@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.app.R;
 import com.example.app.databinding.FragmentIntroduceBinding;
-import com.example.app.databinding.FragmentLoginBinding;
-import com.project.healingEars.activity.ui.activity.VmShareViewModel;
+import com.project.healingEars.activity.ui.ui.VmShareViewModel;
 
 
 public class IntroduceFragment extends Fragment {

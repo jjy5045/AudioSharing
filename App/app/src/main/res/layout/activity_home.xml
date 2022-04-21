@@ -6,7 +6,7 @@
     <data>
         <variable
             name="VmShareViewModel"
-            type="com.project.healingEars.activity.ui.activity.VmShareViewModel" />
+            type="com.project.healingEars.activity.ui.ui.VmShareViewModel" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout

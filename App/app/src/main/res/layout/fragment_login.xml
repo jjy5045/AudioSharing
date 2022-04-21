@@ -5,13 +5,13 @@
     <data>
         <variable
             name="VmShareViewModel"
-            type="com.project.healingEars.activity.ui.activity.VmShareViewModel" />
+            type="com.project.healingEars.activity.ui.ui.VmShareViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.project.healingEars.activity.ui.myinfo.LoginChildFragment">
+        tools:context="com.project.healingEars.activity.ui.myInfo.LoginChildFragment">
 
         <TextView
             android:id="@+id/text_home"

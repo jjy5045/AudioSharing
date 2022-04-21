@@ -4,7 +4,7 @@
     <data>
         <variable
             name="VmShareViewModel"
-            type="com.project.healingEars.activity.ui.activity.VmShareViewModel" />
+            type="com.project.healingEars.activity.ui.ui.VmShareViewModel" />
     </data>
 
     <LinearLayout
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        tools:context="com.project.healingEars.activity.ui.myinfo.TempFragment">
+        tools:context="com.project.healingEars.activity.ui.myInfo.TempFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView

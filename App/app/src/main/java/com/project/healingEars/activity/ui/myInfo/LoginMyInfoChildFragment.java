@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.myinfo;
+package com.project.healingEars.activity.ui.myInfo;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.example.app.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LogindMyInfoChildFragment#newInstance} factory method to
+ * Use the {@link LoginMyInfoChildFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LogindMyInfoChildFragment extends Fragment {
+public class LoginMyInfoChildFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class LogindMyInfoChildFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LogindMyInfoChildFragment() {
+    public LoginMyInfoChildFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class LogindMyInfoChildFragment extends Fragment {
      * @return A new instance of fragment LogindMyInfoChildFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LogindMyInfoChildFragment newInstance(String param1, String param2) {
-        LogindMyInfoChildFragment fragment = new LogindMyInfoChildFragment();
+    public static LoginMyInfoChildFragment newInstance(String param1, String param2) {
+        LoginMyInfoChildFragment fragment = new LoginMyInfoChildFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class LogindMyInfoChildFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_logind_my_info_child, container, false);
+        return inflater.inflate(R.layout.fragment_login_my_info_child, container, false);
     }
 }

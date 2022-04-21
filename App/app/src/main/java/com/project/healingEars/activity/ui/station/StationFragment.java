@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app.databinding.FragmentStationBinding;
-import com.project.healingEars.activity.ui.activity.VmShareViewModel;
+import com.project.healingEars.activity.ui.ui.VmShareViewModel;
 
 
 public class StationFragment extends Fragment {

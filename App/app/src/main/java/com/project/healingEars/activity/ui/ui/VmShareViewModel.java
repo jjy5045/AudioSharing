@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.activity;
+package com.project.healingEars.activity.ui.ui;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

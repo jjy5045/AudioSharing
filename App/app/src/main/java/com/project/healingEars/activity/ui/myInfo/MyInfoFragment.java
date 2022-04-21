@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.myinfo;
+package com.project.healingEars.activity.ui.myInfo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.navigation.Navigation;
 import com.example.app.R;
 import com.example.app.databinding.FragmentMyinfoBinding;
 import com.project.healingEars.activity.ui.introduce.IntroduceFragment;
-import com.project.healingEars.activity.ui.activity.VmShareViewModel;
+import com.project.healingEars.activity.ui.ui.VmShareViewModel;
 
 public class MyInfoFragment extends Fragment {
     //private Context context;
@@ -68,7 +68,7 @@ public class MyInfoFragment extends Fragment {
             if(s.equals("로그인성공")) {
                 vmShareViewModel.mText.setValue("로그인완료");
                 //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_temp);
-                Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_login_my_info);
+                Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_temp);
 
             }
         });

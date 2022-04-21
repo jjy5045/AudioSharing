@@ -5,12 +5,12 @@
     <data>
         <variable
             name="VmShareViewModel"
-            type="com.project.healingEars.activity.ui.activity.VmShareViewModel" />
+            type="com.project.healingEars.activity.ui.ui.VmShareViewModel" />
     </data>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.project.healingEars.activity.ui.activity.HomeActivity">
+    tools:context="com.project.healingEars.activity.ui.ui.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

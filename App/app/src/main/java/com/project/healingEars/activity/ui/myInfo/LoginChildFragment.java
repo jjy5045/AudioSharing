@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.myinfo;
+package com.project.healingEars.activity.ui.myInfo;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.app.databinding.FragmentLoginBinding;
 import com.project.healingEars.activity.ui.introduce.IntroduceFragment;
-import com.project.healingEars.activity.ui.activity.VmShareViewModel;
+import com.project.healingEars.activity.ui.ui.VmShareViewModel;
 
 public class LoginChildFragment extends Fragment {
     private FragmentLoginBinding binding;

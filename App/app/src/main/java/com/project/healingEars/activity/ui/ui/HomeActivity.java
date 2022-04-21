@@ -1,4 +1,4 @@
-package com.project.healingEars.activity.ui.activity;
+package com.project.healingEars.activity.ui.ui;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +17,7 @@ import com.example.app.databinding.ActivityHomeBinding;
 import com.example.app.databinding.NavHeaderHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.project.healingEars.activity.ui.myinfo.MyInfoFragment;
+import com.project.healingEars.activity.ui.myInfo.MyInfoFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_my_info, R.id.nav_announce, R.id.nav_station, R.id.nav_product, R.id.nav_board, R.id.nav_introduce_HE)
+                R.id.nav_my_info, R.id.nav_announce, R.id.nav_station, R.id.nav_product, R.id.nav_board, R.id.nav_introduce)
                 .setOpenableLayout(drawer)
                 .build();
 

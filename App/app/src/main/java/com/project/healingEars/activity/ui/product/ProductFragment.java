@@ -22,8 +22,7 @@ public class ProductFragment extends Fragment {
         binding = FragmentProductBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        productViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
         return root;
     }
 

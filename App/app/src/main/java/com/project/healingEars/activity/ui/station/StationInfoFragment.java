@@ -49,9 +49,6 @@ public class StationInfoFragment extends Fragment {
 
 
 
-
-
-
         return root;
     }
 }

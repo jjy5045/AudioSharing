@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDZeqmsKSV2dY7g0xyfXIkVUd6hrfexD7M"/>
+
+
         <activity
             android:name="com.project.healingEars.activity.ui.HomeActivity"
             android:exported="true"
@@ -27,9 +33,6 @@
         </intent-filter>
         </activity>
         <!-- http 접근 허용 -->
-        <activity
-            android:name="com.project.healingEars.activity.LoginActivity"
-            android:exported="true"/>
     </application>
 
 </manifest>

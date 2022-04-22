@@ -63,6 +63,12 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.fragment:fragment:1.4.1'
 
+    //https://webnautes.tistory.com/647
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+
+
+
     def lifecycle_version = "2.5.0-alpha06"
     def arch_version = "2.1.0"
 

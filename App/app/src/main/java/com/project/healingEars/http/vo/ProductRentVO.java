@@ -18,4 +18,6 @@ public class ProductRentVO {
     public UserVO user;
     public ProductDetailVO productDetail;
 
+
+
 }

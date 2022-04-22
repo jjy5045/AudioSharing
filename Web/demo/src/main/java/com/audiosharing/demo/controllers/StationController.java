@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -45,7 +49,7 @@ public class StationController {
 	}
 	
 	@GetMapping("/all")
-	public Map<String, Object> findAll() {
+	public ResponseEntity<Map<String, Object>> findAll(HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		
 		List<StationList> LStationList = stationListSerivce.findAll();
@@ -54,10 +58,10 @@ public class StationController {
 			response.put("station", LStationList);
 		} else {
 			response.put("result", "FAIL");
-			response.put("reason", "일치하는 회원 정보가 없습니다. 사용자 id를 확인해주세요.");
+			response.put("reason", "오류");
 		}
 		
-		return response;
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@PostMapping("")

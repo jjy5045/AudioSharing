@@ -28,6 +28,7 @@ public class UserVO {
     public UserVO(String userName) {
         this.userName = userName;
     }
+
     public UserVO(String userEmail, String userPassword) {
         System.out.println("UserVO 생성자 호출");
         this.userEmail = userEmail;

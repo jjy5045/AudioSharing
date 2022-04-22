@@ -70,7 +70,8 @@ public class MyInfoFragment extends Fragment {
             else if(s.equals("LOGOUT")) binding.fragmentHome1.setVisibility(View.VISIBLE);
         });
 
-
+        //나중에 테스트(새로고침_
+        //binding.fragmentHome1.notifyAll();
 
 
         /*

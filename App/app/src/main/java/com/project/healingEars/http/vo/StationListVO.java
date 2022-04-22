@@ -8,4 +8,8 @@ public class StationListVO {
     public String stnLocation;
     public String stnImg;
     public Date stnCreateTimestamp;
+
+    public StationListVO(String stnName) {
+        this.stnName = stnName;
+    }
 }

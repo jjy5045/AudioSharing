@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.project.healingEars.http.dto.SessionDTO;
+import com.project.healingEars.http.dto.StationDTO;
 import com.project.healingEars.http.dto.UserDTO;
 import com.project.healingEars.http.service.UserService;
 import com.project.healingEars.http.vo.StationListVO;
@@ -14,7 +15,9 @@ import com.project.healingEars.http.vo.UserVO;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -28,8 +31,8 @@ public class VmShareViewModel extends ViewModel {
     public MutableLiveData<String> mText;
 
     public MutableLiveData<UserVO> userVO;
-    public MutableLiveData<StationListVO> stationListVO;
-
+    public MutableLiveData<List<StationListVO>> stationListVO;
+    //public List<StationListVO> stationListVO;
 
     public VmShareViewModel() {
         userVO = new MutableLiveData<>();
@@ -37,6 +40,7 @@ public class VmShareViewModel extends ViewModel {
         userNickName = new MutableLiveData<>();
         session = new MutableLiveData<>();
         loginState = new MutableLiveData<>();
+        stationListVO = new MutableLiveData<>();
 
         UserVO user = new UserVO("로그인 해주세요");
         userVO.setValue(user);
@@ -102,6 +106,20 @@ public class VmShareViewModel extends ViewModel {
         }
     }
 
+
+    public void getStationList() {
+        try {
+            Response<StationDTO> result = new UserService.getAllStation().execute().get();
+
+            if((result.body().result).equals("SUCCESS")) {
+                stationListVO.setValue(result.body().station);
+            } else
+                mText.setValue("에러");
+        } catch (Exception ignored) {
+            mText.setValue("에러");
+        }
+    }
+
     public LiveData<String> getmText() { return mText; }
 
     public LiveData<String> getUserNickName() {
@@ -109,4 +127,6 @@ public class VmShareViewModel extends ViewModel {
     }
 
     public MutableLiveData<UserVO> getUserVO() { return userVO; }
+
+   // public List<StationListVO> getStation() { return (List)stationListVO.getValue(); }
 }

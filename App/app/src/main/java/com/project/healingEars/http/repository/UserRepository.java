@@ -2,7 +2,9 @@ package com.project.healingEars.http.repository;
 
 import com.project.healingEars.api.retrofitClient;
 import com.project.healingEars.http.dto.SessionDTO;
+import com.project.healingEars.http.dto.StationDTO;
 import com.project.healingEars.http.dto.UserDTO;
+import com.project.healingEars.http.vo.StationListVO;
 import com.project.healingEars.http.vo.UserVO;
 
 import java.util.List;
@@ -45,6 +47,9 @@ public class UserRepository extends retrofitClient {
 
         @GET("users/session")
         Call<SessionDTO> sessionInfo();
+
+        @GET("station/all")
+        Call<StationDTO> getAllStation();
         /*
         //1. 회원 정보 조회
         //Get방식, 주소가 고정되지 않는 상황에서는 @Path를 통해 주소를 다이나믹하게 넣을 수 있습니다.

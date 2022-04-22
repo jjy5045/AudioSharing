@@ -29,9 +29,17 @@ public class ProductDetailService {
 		this.productDetailRepository = productDetailRepository;
 	}
 	
+	
+	
 	@Transactional(readOnly = true)
 	public Optional<ProductDetail> findByProDetailId(Long id) {
 		return productDetailRepository.findByProDetailId(id);
+	}
+	
+	@Transactional
+	public List<ProductDetail> findByStationId(long id) {
+		List<ProductDetail> ProductDetailList = this.productDetailRepository. findByStationListStnId(id);
+		return ProductDetailList;
 	}
 	
 

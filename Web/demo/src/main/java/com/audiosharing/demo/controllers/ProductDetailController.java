@@ -50,6 +50,23 @@ public class ProductDetailController {
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 	
+	
+	@GetMapping("/station/{id}")
+	public ResponseEntity<Map<String, Object>> findByStnIdAllProDetailId(@PathVariable("id") long id) throws JsonProcessingException {
+		Map<String, Object> response = new HashMap<>();
+		
+		List<ProductDetail> LProductDetail = productDetailService.findByStationId(id);
+		
+		if(!LProductDetail.isEmpty()) {
+			response.put("result", "SUCCESS");
+			response.put("productDetail", LProductDetail );
+		} else {
+			response.put("result", "FAIL");
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
 	@GetMapping("/all")
 	public Map<String, Object> findAll() {
 		Map<String, Object> response = new HashMap<>();

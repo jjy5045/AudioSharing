@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.project.healingEars.http.dto.SessionDTO;
 import com.project.healingEars.http.dto.StationDTO;
 import com.project.healingEars.http.dto.UserDTO;
+import com.project.healingEars.http.service.StationService;
 import com.project.healingEars.http.service.UserService;
 import com.project.healingEars.http.vo.StationListVO;
 import com.project.healingEars.http.vo.UserVO;
@@ -109,7 +110,7 @@ public class VmShareViewModel extends ViewModel {
 
     public void getStationList() {
         try {
-            Response<StationDTO> result = new UserService.getAllStation().execute().get();
+            Response<StationDTO> result = new StationService.getAllStation().execute().get();
 
             if((result.body().result).equals("SUCCESS")) {
                 stationListVO.setValue(result.body().station);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -35,7 +36,7 @@ public class StationFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //GalleryViewModel galleryViewModel = new ViewModelProvider(this).get(GalleryViewModel.class);
-        //StationViewModel stationViewModel = new ViewModelProvider(this).get(StationViewModel.class);
+        StationViewModel stationViewModel = new ViewModelProvider(this).get(StationViewModel.class);
         VmShareViewModel vmShareViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
 
         binding = FragmentStationBinding.inflate(inflater, container, false);
@@ -57,6 +58,8 @@ public class StationFragment extends Fragment {
         StationAdapter adapter = new StationAdapter((List)vmShareViewModel.stationListVO.getValue());
 
         recyclerView.setAdapter(adapter);
+
+
 
 
         //itemStationBinding = ItemStationBinding.bind(binding.stationRecycler);

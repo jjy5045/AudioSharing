@@ -27,7 +27,11 @@
         android:id="@+id/nav_station"
         android:name="com.project.healingEars.activity.ui.station.StationFragment"
         android:label="스테이션"
-        tools:layout="@layout/fragment_station" />
+        tools:layout="@layout/fragment_station" >
+        <action
+            android:id="@+id/action_nav_station_to_nav_station_info"
+            app:destination="@id/nav_station_info" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_product"
@@ -65,5 +69,15 @@
         android:label="게시판"
         tools:layout="@layout/fragment_board" />
 
+    <fragment
+        android:id="@+id/nav_station_info"
+        android:name="com.project.healingEars.activity.ui.station.StationInfoFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_station_info">
+        <argument
+            android:name="stn_Id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 
 </navigation>

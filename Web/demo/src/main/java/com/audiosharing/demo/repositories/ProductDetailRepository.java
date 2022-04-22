@@ -12,4 +12,7 @@ import com.audiosharing.demo.models.entities.ProductDetail;
 public interface ProductDetailRepository extends JpaRepository<ProductDetail, Long>{
 	Optional<ProductDetail> findByProDetailId(Long id);
 	List<ProductDetail> findAll();
+	List<ProductDetail> findByStationListStnId(Long id);
+	
+
 }

@@ -56,7 +56,7 @@ public class StationController {
 	
 	
 	@GetMapping("/all")
-	@LoginType(type = LoginType.UserType.USER)
+	//@LoginType(type = LoginType.UserType.USER)
 	public ResponseEntity<Map<String, Object>> findAll(HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		

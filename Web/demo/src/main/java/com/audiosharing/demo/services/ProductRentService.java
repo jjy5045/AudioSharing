@@ -48,7 +48,7 @@ public class ProductRentService {
 	@Transactional
 	public void rentFinishBoolean(long id) {
 		Optional<ProductRent> oProductRent = productRentRepository.findByRentId(id);
-		if (oProductRent.isPresent()) {
+		if (!oProductRent.isEmpty()) {
 			ProductRent productRent = oProductRent.get();
 			if (productRent.isRentFinishCheck() == false) {
 				productRent.setRentFinishCheck(true);

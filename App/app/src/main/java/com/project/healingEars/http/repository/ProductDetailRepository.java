@@ -10,10 +10,10 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public class ProductDetailRepository extends retrofitClient {
+public class ProductDetailRepository {
 
     public  static ProductDetailAPI getRetrofit() {
-        return (ProductDetailAPI) getInstance().create(ProductDetailRepository.ProductDetailAPI.class);
+        return retrofitClient.getInstance().getRetrofit().create(ProductDetailRepository.ProductDetailAPI.class);
     }
 
     public interface ProductDetailAPI {

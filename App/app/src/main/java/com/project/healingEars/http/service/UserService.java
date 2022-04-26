@@ -1,7 +1,10 @@
 package com.project.healingEars.http.service;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
+import com.project.healingEars.api.APIAdapter;
+import com.project.healingEars.api.retrofitClient;
 import com.project.healingEars.http.dto.SessionDTO;
 import com.project.healingEars.http.dto.StationDTO;
 import com.project.healingEars.http.dto.UserDTO;
@@ -14,13 +17,13 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class UserService {
+public class UserService extends APIAdapter {
 
-    // retrofit 객체 중복 생성을 방지하기 위해 static으로 생성
     static UserRepository.UserAPI retrofit2 = UserRepository.getRetrofit();
 
 
     public static class LoginTask extends AsyncTask<String, Void, Response<UserDTO>> {
+
         @Override // 작업전 실행되는 메서드
         protected void onPreExecute() {
             super.onPreExecute();
@@ -33,6 +36,8 @@ public class UserService {
             //Object contex
             //Call<String> jsonCall = UserRepository.getRcoetrofit(params[2]).loginString(userVO);
             Call<UserDTO> result = retrofit2.loginString(userVO);
+
+
             try {
                 Response<UserDTO> response = result.execute();
                 return response;

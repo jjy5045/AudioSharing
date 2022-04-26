@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.audiosharing.demo.models.entities.StationList;
 import com.audiosharing.demo.models.values.StationListValue;
 import com.audiosharing.demo.services.StationListService;
+import com.audiosharing.demo.util.LoginType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -55,6 +56,7 @@ public class StationController {
 	
 	
 	@GetMapping("/all")
+	@LoginType(type = LoginType.UserType.USER)
 	public ResponseEntity<Map<String, Object>> findAll(HttpSession session) {
 		Map<String, Object> response = new HashMap<>();
 		

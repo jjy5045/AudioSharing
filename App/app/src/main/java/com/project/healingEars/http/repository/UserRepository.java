@@ -1,9 +1,12 @@
 package com.project.healingEars.http.repository;
 
+import android.content.Context;
+
 import com.project.healingEars.api.retrofitClient;
 import com.project.healingEars.http.dto.SessionDTO;
 import com.project.healingEars.http.dto.StationDTO;
 import com.project.healingEars.http.dto.UserDTO;
+import com.project.healingEars.http.service.UserService;
 import com.project.healingEars.http.vo.StationListVO;
 import com.project.healingEars.http.vo.UserVO;
 
@@ -16,10 +19,10 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public class UserRepository extends retrofitClient {
+public class UserRepository {
 
-    public  static UserAPI getRetrofit() {
-        return (UserAPI) getInstance().create(UserAPI.class);
+    public static UserAPI getRetrofit() {
+        return retrofitClient.getInstance().getRetrofit().create(UserAPI.class);
     }
 
     public interface UserAPI {

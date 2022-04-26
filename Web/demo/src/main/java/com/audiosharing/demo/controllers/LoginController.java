@@ -68,8 +68,9 @@ public class LoginController {
 			// 세션에 로그인 회원 정보 보관 
 			//session.setAttribute("oUser", oUser);
 			session.setAttribute("id", oUser.get().getUserId());
-			session.setAttribute("LOGIN_MEMBER_ID", "USER");
-
+			
+			if (!(oUser.get().getUserType()).equals("2")) session.setAttribute("LOGIN_MEMBER_ID", "USER");
+			else session.setAttribute("LOGIN_MEMBER_ID", "ADMIN");
 			
 		} else {
 			response.put("result", "FAIL");

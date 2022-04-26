@@ -20,6 +20,7 @@ import com.project.healingEars.http.vo.StationListVO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 
 public class StationFragment extends Fragment {
@@ -27,8 +28,6 @@ public class StationFragment extends Fragment {
     private FragmentStationBinding binding;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    ArrayList<StationListVO> items = new ArrayList<>();
-
 
     //RecyclerView recyclerView;
     StationAdapter adapter;
@@ -36,7 +35,7 @@ public class StationFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //GalleryViewModel galleryViewModel = new ViewModelProvider(this).get(GalleryViewModel.class);
-        StationViewModel stationViewModel = new ViewModelProvider(this).get(StationViewModel.class);
+        StationViewModel stationViewModel = new ViewModelProvider(requireActivity()).get(StationViewModel.class);
         VmShareViewModel vmShareViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
 
         binding = FragmentStationBinding.inflate(inflater, container, false);
@@ -44,8 +43,6 @@ public class StationFragment extends Fragment {
 
         binding.setLifecycleOwner(this);
         binding.setVmShareModel(vmShareViewModel);
-
-        //binding.btnStation.setOnClickListener(view -> { vmShareViewModel.getStationList(); });
 
         vmShareViewModel.getStationList();
 

@@ -6,10 +6,10 @@ import com.project.healingEars.http.dto.StationDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public class StationRepository extends retrofitClient {
+public class StationRepository {
 
     public  static StationAPI getRetrofit() {
-        return (StationAPI) getInstance().create(StationRepository.StationAPI.class);
+        return retrofitClient.getInstance().getRetrofit().create(StationRepository.StationAPI.class);
     }
 
     public interface StationAPI {

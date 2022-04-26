@@ -18,6 +18,7 @@ import com.example.app.databinding.NavHeaderHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.project.healingEars.activity.ui.myInfo.MyInfoFragment;
+import com.project.healingEars.activity.ui.station.StationViewModel;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -41,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // 싱글톤으로 보장받는 액티비티 View Mdoel 생성
         VmShareViewModel vmShareViewModel = new ViewModelProvider(this).get(VmShareViewModel.class);
+        StationViewModel stationViewModel = new ViewModelProvider(this).get((StationViewModel.class));
 
         // 뷰 바인딩
         binding = ActivityHomeBinding.inflate(getLayoutInflater());

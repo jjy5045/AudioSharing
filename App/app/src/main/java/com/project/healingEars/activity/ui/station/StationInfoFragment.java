@@ -41,7 +41,7 @@ public class StationInfoFragment extends Fragment {
 
         stationViewModel.getProDetailByStnId(stnId);
 
-        // 전달값 확인완료 ! Layout 짜면됌
+        // 전달값 확인완료 ! Layout 짜면됌, 레이아웃 리스트 뷰로
 
         Toast.makeText(requireContext(), stnId +"\n" +" 앙", Toast.LENGTH_LONG).show();
         Toast.makeText(requireContext(), stnId +"\n" +" 앙", Toast.LENGTH_LONG).show();

@@ -70,29 +70,6 @@ public class MyInfoFragment extends Fragment {
             else if(s.equals("LOGOUT")) binding.fragmentHome1.setVisibility(View.VISIBLE);
         });
 
-        //나중에 테스트(새로고침_
-        //binding.fragmentHome1.notifyAll();
-
-
-        /*
-        vmShareViewModel.mText.observe(requireActivity(), s -> {
-            if(s.equals("로그인성공")) {
-                vmShareViewModel.mText.setValue("로그인완료");
-                //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_temp);
-                //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_temp);
-                Navigation.findNavController(root).navigate(R.id.action_nav_my_info_self);
-                Toast.makeText(requireActivity(), "로그인에 성공했습니다.", Toast.LENGTH_LONG).show();
-            }
-        });
-         */
-
-
-
-        //getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commitAllowingStateLoss();
-
-        //Navigation.findNavController(MyInfoFragment.this).navigate(R.id.action_nav_my_info_to_nav_introduce2);
-        //Navigation.findNavController(require11111Activity()).navigate();
-        // https://black-jin0427.tistory.com/118
 
 
         /*
@@ -100,16 +77,7 @@ public class MyInfoFragment extends Fragment {
             if (s.equals("LOGIN")) { getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commit(); }
             else if(s.equals("LOGOUT")) getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commit();
         });
-
          */
-        //getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, getParentFragmentManager().findFragmentByTag("Tag")).commit();
-        /*
-        vmShareViewModel.loginState.observe(requireActivity(), s -> {
-            if(s.equals("LOGOUT")) getParentFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commitAllowingStateLoss();
-        });
-        */
-
-
 
         return root;
     }

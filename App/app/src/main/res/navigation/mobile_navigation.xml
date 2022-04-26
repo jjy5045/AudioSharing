@@ -13,14 +13,11 @@
         android:label="내 정보"
         tools:layout="@layout/fragment_myinfo" >
         <action
-            android:id="@+id/action_nav_my_info_to_nav_temp"
-            app:destination="@id/nav_temp" />
-        <action
             android:id="@+id/action_nav_my_info_to_nav_login_my_info"
             app:destination="@id/nav_login_my_info" />
         <action
-            android:id="@+id/action_nav_my_info_self"
-            app:destination="@id/nav_my_info" />
+            android:id="@+id/action_nav_my_info_to_nav_sign_up"
+            app:destination="@id/nav_sign_up" />
     </fragment>
 
     <fragment
@@ -46,10 +43,10 @@
         tools:layout="@layout/fragment_introduce" />
 
     <fragment
-        android:id="@+id/nav_temp"
-        android:name="com.project.healingEars.activity.ui.myInfo.TempFragment"
-        android:label="로그인 성공"
-        tools:layout="@layout/fragment_temp" />
+        android:id="@+id/nav_sign_up"
+        android:name="com.project.healingEars.activity.ui.myInfo.SignUpChildFragment"
+        android:label="회원가입"
+        tools:layout="@layout/fragment_sign_up_child" />
 
     <fragment
         android:id="@+id/nav_login_my_info"

@@ -53,6 +53,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
        ///holder.bindItem(stationListVO.get(position));
         holder.item_name.setText(LstationListVO.get(position).stnName.toString());
+        holder.item_location.setText((LstationListVO.get(position).stnLocation.toString()));
     }
 
     public int getItemCount() {

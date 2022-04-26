@@ -41,6 +41,10 @@ public class StationViewModel extends ViewModel {
     }
 
 
+    public MutableLiveData<List<ProductDetailVO>> getProductDetailL() {
+        return productDetailL;
+    }
+
     public LiveData<String> getText() {
         return mText;
     }

@@ -1,7 +1,10 @@
 package com.project.healingEars.activity.ui;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
+import android.content.Context;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -33,6 +36,7 @@ public class VmShareViewModel extends ViewModel {
 
     public MutableLiveData<UserVO> userVO;
     public MutableLiveData<List<StationListVO>> stationListVO;
+    public Context context;
     //public List<StationListVO> stationListVO;
 
     public VmShareViewModel() {
@@ -44,6 +48,7 @@ public class VmShareViewModel extends ViewModel {
         stationListVO = new MutableLiveData<>();
 
         UserVO user = new UserVO("로그인 해주세요");
+        user.userType = "1";
         userVO.setValue(user);
         session.setValue("초기값");
         mText.setValue("로그인실패");
@@ -54,6 +59,7 @@ public class VmShareViewModel extends ViewModel {
     public void Login(String userId, String userPassword) {
         try {
             Response<UserDTO> result = new UserService.LoginTask().execute(userId, userPassword).get();
+
 
             if ((result.body().result).equals("SUCCESS")) {
                 mText.setValue("로그인성공");
@@ -75,7 +81,8 @@ public class VmShareViewModel extends ViewModel {
             String result = new UserService.Logout().execute().get();
 
             if(result.equals("SUCCESS")){
-                UserVO user = new UserVO("로그인이 필요합니다.");
+                UserVO user = new UserVO("로그인이 해주세요.");
+                user.userType = "1";
                 userVO.setValue(user);
                 mText.setValue("로그아웃 성공");
                 loginState.setValue("LOGOUT");
@@ -111,7 +118,6 @@ public class VmShareViewModel extends ViewModel {
     public void getStationList() {
         try {
             Response<StationDTO> result = new StationService.getAllStation().execute().get();
-
             if((result.body().result).equals("SUCCESS")) {
                 stationListVO.setValue(result.body().station);
             } else

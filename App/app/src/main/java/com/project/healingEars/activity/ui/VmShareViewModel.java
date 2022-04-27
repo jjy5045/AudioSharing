@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.project.healingEars.http.dto.SessionDTO;
+import com.project.healingEars.http.dto.SignUpDTO;
 import com.project.healingEars.http.dto.StationDTO;
 import com.project.healingEars.http.dto.UserDTO;
 import com.project.healingEars.http.service.StationService;
@@ -31,12 +32,15 @@ import retrofit2.Response;
 public class VmShareViewModel extends ViewModel {
     public MutableLiveData<String> userNickName;
     public MutableLiveData<String> session;
-    public MutableLiveData<String> loginState;
     public MutableLiveData<String> mText;
 
     public MutableLiveData<UserVO> userVO;
     public MutableLiveData<List<StationListVO>> stationListVO;
     public Context context;
+
+
+    public MutableLiveData<String> loginState;
+    public MutableLiveData<String> signUpState;
     //public List<StationListVO> stationListVO;
 
     public VmShareViewModel() {
@@ -46,6 +50,7 @@ public class VmShareViewModel extends ViewModel {
         session = new MutableLiveData<>();
         loginState = new MutableLiveData<>();
         stationListVO = new MutableLiveData<>();
+        signUpState = new MutableLiveData<>();
 
         UserVO user = new UserVO("로그인 해주세요");
         user.userType = "1";
@@ -54,6 +59,7 @@ public class VmShareViewModel extends ViewModel {
         mText.setValue("로그인실패");
         userNickName.setValue("Android Studio");
         loginState.setValue("LOGOUT");
+        signUpState.setValue("초기값");
     }
 
     public void Login(String userId, String userPassword) {
@@ -73,6 +79,22 @@ public class VmShareViewModel extends ViewModel {
             }
         } catch (Exception ignored) {
             mText.setValue("서버오류");
+        }
+    }
+
+    public void SignUp(String... params) {
+        try {
+            Response<SignUpDTO> result = new UserService.SignUp().execute(params).get();
+
+            if ((result.body().result).equals("SUCCESS")) {
+                signUpState.setValue("회원가입성공");
+            } else if ((result.body().result).equals("FAIL")) {
+                signUpState.setValue("회원가입실패");
+            } else {
+                signUpState.setValue("오류");
+            }
+        } catch (Exception ignored) {
+            signUpState.setValue("서버오류");
         }
     }
 

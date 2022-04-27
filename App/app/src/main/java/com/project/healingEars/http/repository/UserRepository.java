@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.project.healingEars.api.retrofitClient;
 import com.project.healingEars.http.dto.SessionDTO;
+import com.project.healingEars.http.dto.SignUpDTO;
 import com.project.healingEars.http.dto.StationDTO;
 import com.project.healingEars.http.dto.UserDTO;
 import com.project.healingEars.http.service.UserService;
@@ -50,6 +51,10 @@ public class UserRepository {
 
         @GET("users/session")
         Call<SessionDTO> sessionInfo();
+
+        @Headers("Content-Type: application/json")
+        @POST("users")
+        Call<SignUpDTO> signUp(@Body UserVO userVO);
 
 
         /*

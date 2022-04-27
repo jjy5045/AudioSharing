@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class LoginMyInfoChildFragment extends Fragment {
 
         binding.btnMyInfoChildLogout.setOnClickListener(view -> { vmShareViewModel.Logout(); });
         binding.btnMyInfoChildSession.setOnClickListener(view -> {vmShareViewModel.SessionInfo();});
+        binding.btnInfoChildAdmin.setOnClickListener(view -> Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_admin));
 
 
 

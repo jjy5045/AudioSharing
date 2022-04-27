@@ -1,12 +1,10 @@
 package com.project.healingEars.http.service;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.project.healingEars.api.APIAdapter;
-import com.project.healingEars.api.retrofitClient;
 import com.project.healingEars.http.dto.SessionDTO;
-import com.project.healingEars.http.dto.StationDTO;
+import com.project.healingEars.http.dto.SignUpDTO;
 import com.project.healingEars.http.dto.UserDTO;
 import com.project.healingEars.http.repository.UserRepository;
 import com.project.healingEars.http.vo.UserVO;
@@ -94,6 +92,32 @@ public class UserService extends APIAdapter {
 
         @Override
         protected void onPostExecute(Response<SessionDTO> s) {
+            super.onPostExecute(s);
+        }
+    }
+
+    public static class SignUp extends AsyncTask<String, Void, Response<SignUpDTO>>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Response<SignUpDTO> doInBackground(String... params) {
+            UserVO userVO = new UserVO(params[0], params[1], params[2], params[3], params[4], params[5]);
+
+            Call<SignUpDTO> response = retrofit2.signUp(userVO);
+            try {
+                Response<SignUpDTO> result = response.execute();
+                return result;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Response<SignUpDTO> s) {
             super.onPostExecute(s);
         }
     }

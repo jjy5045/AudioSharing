@@ -232,21 +232,19 @@ public class UserController {
 
 		return response;
 	}
-
+	
 	@PostMapping("")
-	public Map<String, Object> save(@RequestBody UserValue value) {
-		Map<String, Object> response = new HashMap<>();
+	public ResponseEntity<Map<String, Object>> save(@RequestBody UserValue value, HttpSession session) {
+		Map<String, Object> result = new HashMap<>();
 
 		User user = userService.save(value);
 		if (user != null) {
-			response.put("result", "SUCCESS");
-			response.put("user", user);
+			result.put("result", "SUCCESS");
 		} else {
-			response.put("result", "FAIL");
-			response.put("reason", "회원 가입 실패");
+			result.put("result", "FAIL");
 		}
 
-		return response;
+		return new ResponseEntity<Map<String, Object>>(result, HttpStatus.OK);
 	}
 
 	@PatchMapping("/{id}")

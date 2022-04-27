@@ -79,7 +79,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //  android:onClick="@{() -> viewModel.buttonClick()}"
-
+        //Toast.makeText(requireActivity(), "onDestroyView()", Toast.LENGTH_LONG).show();
         /*
         if(myInfoFrament == null) {
             myInfoFrament = new MyInfoFragment();

@@ -50,16 +50,20 @@ public class ProductRentService {
 		Optional<ProductRent> oProductRent = productRentRepository.findByRentId(id);
 		if (!oProductRent.isEmpty()) {
 			ProductRent productRent = oProductRent.get();
+			// 대여중 상태라면 
 			if (productRent.isRentFinishCheck() == false) {
+				// 반납상태로 변경
 				productRent.setRentFinishCheck(true);
 				productRentRepository.save(productRent);
 				return;
 			}
-			if (productRent.isRentFinishCheck() == true) {
+			/* 필요 없는 듯?
+			else if (productRent.isRentFinishCheck() == true) {
 				productRent.setRentFinishCheck(false);
 				productRentRepository.save(productRent);
 				return;
 			}	
+			*/
 		}
 	}
 }

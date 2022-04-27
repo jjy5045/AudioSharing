@@ -34,4 +34,14 @@ public class UserVO {
         this.userEmail = userEmail;
         this.userPassword = userPassword;
     }
+
+    public UserVO(String param, String param1, String param2, String param3, String param4, String param5) {
+        this.userType = "1";
+        this.userName = param;
+        this.userSex = param1;
+        this.userEmail = param2;
+        this.userTel = param3;
+        this.userPassword = param4;
+        this.userBirth = param5;
+    }
 }

@@ -62,6 +62,7 @@ public class ProductRentController {
 
 				// 제품의 상태를 대여중으로 변경
 				productDetailService.rentBoolean(value.getProductDetail().getProDetailId());
+				
 				response.put("result", "SUCCESS");
 				response.put("productRent", productRent);
 				return response;

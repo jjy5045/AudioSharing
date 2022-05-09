@@ -9,8 +9,10 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.app.R;
+import com.example.app.databinding.FragmentLogin2Binding;
 import com.example.app.databinding.FragmentLoginBinding;
 import com.project.healingEars.activity.ui.introduce.IntroduceFragment;
 import com.project.healingEars.activity.ui.VmShareViewModel;
@@ -21,7 +23,7 @@ public class LoginChildFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         VmShareViewModel vmShareViewModel = new ViewModelProvider(requireActivity()).get(VmShareViewModel.class);
-
+        /*
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -31,8 +33,24 @@ public class LoginChildFragment extends Fragment {
         binding.btnLogin.setOnClickListener(view -> { vmShareViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString()); });
         binding.btnSignup.setOnClickListener(view -> { Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_sign_up); });
         binding.btnSession.setOnClickListener(view -> { vmShareViewModel.SessionInfo();});
+         */
 
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
+        binding.setLifecycleOwner(this);
+        binding.setVmShareViewModel(vmShareViewModel);
+
+        binding.btnLogin.setOnClickListener(view -> {
+            vmShareViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString());
+            if ((vmShareViewModel.loginState.getValue()).equals("LOGIN"))
+                Toast.makeText(requireActivity(), "환영합니다.", Toast.LENGTH_LONG).show();
+        });
+
+        binding.btnSignup.setOnClickListener(view -> {
+            Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_sign_up);
+        });
+        //binding.btnSession.setOnClickListener(view -> { vmShareViewModel.SessionInfo();});
 
 
         //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_introduce2);

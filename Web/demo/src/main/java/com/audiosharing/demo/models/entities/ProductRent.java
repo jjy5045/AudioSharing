@@ -36,56 +36,30 @@ import lombok.Setter;
 @DynamicUpdate
 @DynamicInsert
 public class ProductRent implements Serializable {
+	// 대여 번호
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT(11)")
 	private Long rentId;
 
+	// 대여 시작 시간
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date rentStartTime;
-
-	@Column(nullable = false, length = 20)
-	private String rentTime;
-
-	@Column(nullable = false, length = 20)
-	private String rentPayment;
-
-	@Column(nullable = true, length = 20)
-	private String rentAdditionalPayment;
-
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0", length = 1)
-	private boolean rentPayCheck;
-
-	@Column(nullable = true, length = 20)
-	private String rentReviewSound;
-
-	@Column(nullable = true, length = 20)
-	private String rentReviewFit;
-
-	@Column(nullable = true, length = 20)
-	private String rentReviewDesign;
-
-	@Column(nullable = true, length = 20)
-	private String rentReviewBody;
-
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0", length = 1)
-	private boolean rentReviewCheck;
-	/*
-	//제품 예약 확인
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1", length = 1)
-	private boolean rentFinish;
-	*/
-	//예약 상태 확인
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0", length = 1)
-	private boolean rentFinishCheck;
-
-	@PrePersist
-	protected void onCreate() {
-		rentStartTime = Timestamp.valueOf(LocalDateTime.now());
-	}
 	
+	// 대여 종료 시간
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
+	private Date rentEndTime;
 
+	// 대여 결제 금액
+	@Column(nullable = false, length = 10)
+	private String rentPrice;
+	
+	// 추가 결제 금액
+	@Column(nullable = false, length = 10)
+	private String rentExtraPrice;
+	
 	// 유저 번호
 	@ManyToOne
 	@JoinColumn(name = "userId")
@@ -95,19 +69,28 @@ public class ProductRent implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "proDetailId")
 	private ProductDetail productDetail;
+	
+	// 리뷰
+	@OneToOne
+	@JoinColumn(name="reviewId")
+	private Review review;
+	
+	
+
+	
+	/*
+	@PrePersist
+	protected void onCreate() {
+		rentStartTime = Timestamp.valueOf(LocalDateTime.now());
+	}
+	*/
+
+
 
 	@Builder
-	public ProductRent(String rentTime, String rentPayment, String rentAdditionalPayment, 
-			String rentReviewSound, String rentReviewFit,
-			String rentReviewDesign, String rentReviewBody,
+	public ProductRent(String rentStartTime, String rentPayment, String rentAdditionalPayment, 
 			User user, ProductDetail productDetail) {
-		this.rentTime = rentTime;
-		this.rentPayment = rentPayment;
-		this.rentAdditionalPayment = rentAdditionalPayment;
-		this.rentReviewSound = rentReviewSound;
-		this.rentReviewFit = rentReviewFit;
-		this.rentReviewDesign = rentReviewDesign;
-		this.rentReviewBody = rentReviewBody;
+
 		this.user = user;
 		this.productDetail = productDetail;
 	}

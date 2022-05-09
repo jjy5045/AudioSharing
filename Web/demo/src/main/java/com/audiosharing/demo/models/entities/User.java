@@ -57,7 +57,17 @@ public class User implements Serializable {
 
 	@Column(nullable = false, length = 150)
 	private String userPassword;
+	
+	@Column(nullable = false, length = 10)
+	private String userMusicGenre1;
 
+	@Column(nullable = false, length = 10)
+	private String userMusicGenre2;
+	
+	@Column(nullable = false, length = 10)
+	private String userMusicGenre3;
+	
+	
 	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0", length = 1)
 	private boolean userDel;
 

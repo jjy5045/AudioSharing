@@ -9,10 +9,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.project.healingEars.api.retrofitClient;
 import com.project.healingEars.http.dto.SessionDTO;
 import com.project.healingEars.http.dto.SignUpDTO;
 import com.project.healingEars.http.dto.StationDTO;
 import com.project.healingEars.http.dto.UserDTO;
+import com.project.healingEars.http.repository.UserRepository;
 import com.project.healingEars.http.service.StationService;
 import com.project.healingEars.http.service.UserService;
 import com.project.healingEars.http.vo.StationListVO;
@@ -27,9 +29,11 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
+import okhttp3.Cookie;
 import retrofit2.Response;
 
 public class VmShareViewModel extends ViewModel {
+    static UserRepository.UserAPI retrofit2 = UserRepository.getRetrofit();
     public MutableLiveData<String> userNickName;
     public MutableLiveData<String> session;
     public MutableLiveData<String> mText;
@@ -126,6 +130,7 @@ public class VmShareViewModel extends ViewModel {
 
             if ((result.body().loginState).equals("OK")) {
                 session.setValue(result.body().sessionGetID);
+                //session.setValue(result.headers().get("Set-Cookie"));
             } else if((result.body().loginState).equals("FAIL")){
                 session.setValue("로그인 상태 아님");
             } else {

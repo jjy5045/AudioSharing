@@ -56,11 +56,9 @@ public class ProductDetail implements Serializable {
 	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date proDetailDate;
 	
-	
 	//제품 예약 확인
 	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0", length = 1)
 	private boolean proDetailRentCheck;
-	
 	
 	//제품 목록 번호
 	@ManyToOne
@@ -71,8 +69,6 @@ public class ProductDetail implements Serializable {
 	@OneToOne
 	@JoinColumn(name="stnId")
 	private StationList stationList;
-	
-
 	
 	@PrePersist
 	protected void onCreate() {

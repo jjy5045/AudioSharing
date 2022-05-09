@@ -36,36 +36,31 @@ public class ProductRentService {
 	@Transactional
 	public ProductRent save(ProductRentValue value) {
 		ProductRent productRent = ProductRent.builder().user(value.getUser()).productDetail(value.getProductDetail())
-				.rentTime(value.getRentTime()).rentPayment(value.getRentPayment())
-				.rentAdditionalPayment(value.getRentAdditionalPayment()).rentReviewFit(value.getRentReviewFit())
-				.rentReviewDesign(value.getRentReviewDesign()).rentReviewSound(value.getRentReviewSound())
-				.rentReviewBody(value.getRentReviewBody()).build();
+				//.rentTime(value.getRentTime()).rentPayment(value.getRentPayment())
+				//.rentAdditionalPayment(value.getRentAdditionalPayment()).rentReviewFit(value.getRentReviewFit())
+				//.rentReviewDesign(value.getRentReviewDesign()).rentReviewSound(value.getRentReviewSound())
+				//.rentReviewBody(value.getRentReviewBody())
+				.build();
 
 		return productRentRepository.save(productRent);
 	}
 	
-	
+	/*
 	@Transactional
 	public void rentFinishBoolean(long id) {
 		Optional<ProductRent> oProductRent = productRentRepository.findByRentId(id);
 		if (!oProductRent.isEmpty()) {
 			ProductRent productRent = oProductRent.get();
 			// 대여중 상태라면 
-			if (productRent.isRentFinishCheck() == false) {
+			if (productRent.== false) {
 				// 반납상태로 변경
 				productRent.setRentFinishCheck(true);
 				productRentRepository.save(productRent);
 				return;
 			}
-			/* 필요 없는 듯?
-			else if (productRent.isRentFinishCheck() == true) {
-				productRent.setRentFinishCheck(false);
-				productRentRepository.save(productRent);
-				return;
-			}	
-			*/
 		}
 	}
+	*/
 }
 	
 	

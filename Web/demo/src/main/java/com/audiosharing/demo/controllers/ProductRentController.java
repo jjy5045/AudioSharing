@@ -98,7 +98,7 @@ public class ProductRentController {
 
 		if (oProductDetail.get().isProDetailRentCheck() == true) {
 			// Rent 상태 종료로 변경
-			productRentService.rentFinishBoolean(value.getRentId());
+			//productRentService.rentFinishBoolean(value.getRentId());
 			// 제품 상태를 대기중으로 변경
 			productDetailService.rentBoolean(value.getProductDetail().getProDetailId());
 			response.put("result", "SUCCESS");

@@ -10,4 +10,7 @@ public class ProductListValue {
 	private String proListText;
 	private String proListPrice;
 	private String proListRentPrice;
+	private String proListCategory;
+	private Boolean proListLine;
+	private String proListWearingType;
 }

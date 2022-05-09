@@ -12,4 +12,7 @@ public class UserValue {
 	private String userBirth;
 	private String userTel;
 	private String userPassword;
+	private String userMusicGenre1;
+	private String userMusicGenre2;
+	private String userMusicGenre3;
 }

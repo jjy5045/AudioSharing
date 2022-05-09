@@ -16,6 +16,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -42,7 +43,7 @@ public class UserRepository {
         @GET("productDetail/all")
         Call<String> Info4();
 
-        @Headers("Content-Type: application/json")
+        //@Headers("Content-Type: application/json")
         @POST("users/login")
         Call<UserDTO> loginString(@Body UserVO userVO);
 
@@ -52,7 +53,7 @@ public class UserRepository {
         @GET("users/session")
         Call<SessionDTO> sessionInfo();
 
-        @Headers("Content-Type: application/json")
+        //@Headers("Content-Type: application/json")
         @POST("users")
         Call<SignUpDTO> signUp(@Body UserVO userVO);
 

@@ -233,6 +233,7 @@ public class UserController {
 		return response;
 	}
 	
+	// 회원가입
 	@PostMapping("")
 	public ResponseEntity<Map<String, Object>> save(@RequestBody UserValue value, HttpSession session) {
 		Map<String, Object> result = new HashMap<>();

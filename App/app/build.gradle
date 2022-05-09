@@ -44,6 +44,11 @@ android {
 
 
 }
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
 
 dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.4'
@@ -76,6 +81,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+
+    implementation 'com.github.franmontiel:PersistentCookieJar:1.0.1'
 
 
 

@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.app.R;
 import com.example.app.databinding.FragmentLoginMyInfoChildBinding;
@@ -31,7 +32,11 @@ public class LoginMyInfoChildFragment extends Fragment {
         binding.setLifecycleOwner(this);
         binding.setVmShareViewModel(vmShareViewModel);
 
-        binding.btnMyInfoChildLogout.setOnClickListener(view -> { vmShareViewModel.Logout(); });
+        binding.btnMyInfoChildLogout.setOnClickListener(view -> {
+            vmShareViewModel.Logout();
+            if ((vmShareViewModel.loginState.getValue()).equals("LOGOUT"))
+                Toast.makeText(requireActivity(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
+        });
         binding.btnMyInfoChildSession.setOnClickListener(view -> {vmShareViewModel.SessionInfo();});
         binding.btnInfoChildAdmin.setOnClickListener(view -> Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_admin));
 

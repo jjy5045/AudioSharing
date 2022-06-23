@@ -43,24 +43,13 @@ public class LoginChildFragment extends Fragment {
 
         binding.btnLogin.setOnClickListener(view -> {
             vmShareViewModel.Login(binding.edtUserId.getText().toString(), binding.edtUserPassword.getText().toString());
-            if ((vmShareViewModel.loginState.getValue()).equals("LOGIN"))
-                Toast.makeText(requireActivity(), "환영합니다.", Toast.LENGTH_LONG).show();
+            if ((vmShareViewModel.loginState.getValue()).equals("LOGIN")) Toast.makeText(requireActivity(), "환영합니다.", Toast.LENGTH_SHORT).show();
+            else if ((vmShareViewModel.loginState.getValue()).equals("FAIL")) Toast.makeText(requireActivity(), "일치하는 회원이 없습니다.", Toast.LENGTH_SHORT).show();
+            else if ((vmShareViewModel.loginState.getValue()).equals("ERROR")) Toast.makeText(requireActivity(), "서버 접속 오류", Toast.LENGTH_SHORT).show();
         });
 
-        binding.btnSignup.setOnClickListener(view -> {
-            Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_sign_up);
-        });
-        //binding.btnSession.setOnClickListener(view -> { vmShareViewModel.SessionInfo();});
-
-
-        //Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_introduce2);
-
-
-        //.findNavController(requireView()).navigate(R.id.action_nav_my_info_to_nav_station);
-
-
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_login, container, false);
+        // 회원가입 버튼 클릭
+        binding.btnSignup.setOnClickListener(view -> { Navigation.findNavController(root).navigate(R.id.action_nav_my_info_to_nav_sign_up); });
         return root;
     }
 

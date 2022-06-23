@@ -26,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
 @Entity
-@Table(name = "user")
+@Table(name = "Review")
 @DynamicUpdate
 @DynamicInsert
 public class Review implements Serializable {

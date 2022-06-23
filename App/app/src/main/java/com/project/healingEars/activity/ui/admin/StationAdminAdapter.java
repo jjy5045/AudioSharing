@@ -1,37 +1,31 @@
-package com.project.healingEars.activity.ui.station;
+package com.project.healingEars.activity.ui.admin;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app.R;
-import com.example.app.databinding.ItemStationBinding;
-import com.project.healingEars.activity.ui.VmShareViewModel;
+import com.project.healingEars.activity.ui.station.StationAdapter;
+import com.project.healingEars.activity.ui.station.StationFragmentDirections;
 import com.project.healingEars.http.vo.StationListVO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHolder> {
-
-    private static final String TAG = "StationAdapter";
+public class StationAdminAdapter extends RecyclerView.Adapter<StationAdminAdapter.ViewHolder> {
+    private static final String TAG = "StationAdminAdapter";
 
     private static List<StationListVO> LstationListVO = new ArrayList<>();
 
     Context context;
 
-    public StationAdapter(List<StationListVO> stationListVO) {
+    public StationAdminAdapter(List<StationListVO> stationListVO) {
         this.LstationListVO = stationListVO;
     }
 
@@ -41,17 +35,17 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public StationAdminAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_station, parent, false);
-        ViewHolder holder = new ViewHolder(itemView);;
+        StationAdminAdapter.ViewHolder holder = new StationAdminAdapter.ViewHolder(itemView);;
         context = parent.getContext();
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-       ///holder.bindItem(stationListVO.get(position));
+    public void onBindViewHolder(@NonNull StationAdminAdapter.ViewHolder holder, int position) {
+        ///holder.bindItem(stationListVO.get(position));
         holder.item_name.setText(LstationListVO.get(position).stnName.toString());
         holder.item_location.setText((LstationListVO.get(position).stnSido.toString()));
 
@@ -96,13 +90,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
                     //Toast.makeText(view.getContext(), stationListVO.stnId +"\n" + stationListVO.stnName +" 앙", Toast.LENGTH_LONG).show();
                 }
             });
-
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    return false;
-                }
-            });
             /*
             binding = ItemStationBinding.bind(itemView);
             //binding.setLifecycleOwner(this);
@@ -117,5 +104,3 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
         }
     }
 }
-
-

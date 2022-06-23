@@ -87,6 +87,22 @@ public class ProductList implements Serializable {
 	}
 	
 	
+	
+	@Builder
+	public ProductList(String proListName, String proListCategory, Boolean proListLine, 
+			String proListType, String proListWearingType, String proListCompany, 
+			String proListText, String proListPrice, String proListRentPrice) {
+		this.proListName = proListName;
+		this.proListCategory = proListCategory;
+		this.proListLine = proListLine;
+		this.proListType = proListType;
+		this.proListWearingType = proListWearingType;
+		this.proListCompany = proListCompany;
+		this.proListText = proListText;
+		this.proListPrice = proListPrice;
+		this.proListRentPrice = proListRentPrice;
+		//this.productDetails = productDetails;
+	}
 	/*
 	@OneToMany(mappedBy = "productList")
 	private List<ProductDetail> productDetails = new ArrayList<>();
@@ -98,18 +114,4 @@ public class ProductList implements Serializable {
 	}
 	*/
 	
-	
-	
-	@Builder
-	public ProductList(String proListType, String proListName, String proListCompany, String proListText,
-			String proListPrice, String proListRentPrice, List<ProductDetail> productDetails) {
-		this.proListType = proListType;
-		this.proListName = proListName;
-		this.proListCompany = proListCompany;
-		this.proListText = proListText;
-		this.proListPrice = proListPrice;
-		this.proListRentPrice = proListRentPrice;
-		//this.productDetails = productDetails;
-		
-	}
 }

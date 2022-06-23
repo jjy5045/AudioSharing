@@ -67,7 +67,7 @@ public class MyInfoFragment extends Fragment {
         // 로그인 상태에서는 로그인창 숨기기
         vmShareViewModel.loginState.observe(requireActivity(), s -> {
             if(s.equals("LOGIN")) binding.fragmentHome1.setVisibility(View.GONE);
-            else if(s.equals("LOGOUT")) binding.fragmentHome1.setVisibility(View.VISIBLE);
+            else binding.fragmentHome1.setVisibility(View.VISIBLE);
         });
 
 

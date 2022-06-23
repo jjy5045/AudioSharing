@@ -31,8 +31,17 @@ public class StationListService {
 	public StationList save(StationListValue value) {
 		StationList stationList = StationList.builder()
 				.stnName(value.getStnName())
-				.stnLocation(value.getStnLocation())
-				.stnImg(value.getStnImg()).build();
+				.stnLatitude(value.getStnLatitude())
+				.stnLongitude(value.getStnLongitude())
+				.stnSido(value.getStnSido())
+				.stnSigungu(value.getStnSigungu())
+				.stnEubmyendong(value.getStnEubmyendong())
+				.stnAdressNum(value.getStnAdressNum())
+				.stnAdressLaod(value.getStnAdressLaod())
+				.stnImageName(value.getStnImageName())
+				.stnImageRealname(value.getStnImageRealname())
+				.stnImagePath(value.getStnImagePath())
+				.build();
 		
 		return stationListRepository.save(stationList);
 	}

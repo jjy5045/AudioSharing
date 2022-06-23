@@ -44,6 +44,8 @@ public class StationFragment extends Fragment {
         binding.setLifecycleOwner(this);
         binding.setVmShareModel(vmShareViewModel);
 
+
+        // 스테이션 리스트 가져오기
         vmShareViewModel.getStationList();
 
         //binding.stationRecycler.setAdapter(adapter);

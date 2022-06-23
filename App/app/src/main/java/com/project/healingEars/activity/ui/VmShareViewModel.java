@@ -3,6 +3,7 @@ package com.project.healingEars.activity.ui;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -77,11 +78,13 @@ public class VmShareViewModel extends ViewModel {
                 userNickName.setValue(userVO.getValue().userEmail);
                 loginState.setValue("LOGIN");
             } else if ((result.body().result).equals("FAIL")) {
+                loginState.setValue("FAIL");
                 mText.setValue("로그인실패");
             } else {
                 mText.setValue("오류");
             }
         } catch (Exception ignored) {
+            loginState.setValue("ERROR");
             mText.setValue("서버오류");
         }
     }

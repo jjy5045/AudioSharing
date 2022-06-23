@@ -63,7 +63,6 @@ public class HomeActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 
-
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
@@ -77,67 +76,6 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        //  android:onClick="@{() -> viewModel.buttonClick()}"
-        //Toast.makeText(requireActivity(), "onDestroyView()", Toast.LENGTH_LONG).show();
-        /*
-        if(myInfoFrament == null) {
-            myInfoFrament = new MyInfoFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_home1, myInfoFrament).commit();
-        }
-        if(myInfoFrament != null) getSupportFragmentManager().beginTransaction().show(myInfoFrament).commit();
-
-         */
-
-        /*
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commitAllowingStateLoss();
-
-        vmShareViewModel.loginState.observe(this, s -> {
-            if (s.equals("LOGOUT")) { getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, loginChildFragment).commit(); }
-            else if(s.equals("LOGIN")) getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commitAllowingStateLoss();
-        });
-
-         */
-
-
-
-        /*
-        vmShareViewModel.loginState.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if (s.equals("ON"))
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home1, blankFragment).commitAllowingStateLoss();
-            }
-        });
-         */
-
-
-
-
-        /////////////////homeFragmentBinding = HomeLoginFragment.bind(binding.)
-
-
-
-        /*
-        vmShareViewModel.loginState.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if(s.equals("ON")) {
-                    //getSupportFragmentManager  는 FragmentActivity 의 메소드입니다.
-                    //
-                    //Fragment에서 부르시니 모르는 함수라고 오류가 날수 밖에 없습니다.
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, ExampleFragment.class, null)
-                            .setReorderingAllowed(true)
-                            .addToBackStack("name") // name can be null
-                            .commit();
-                }
-            }
-        });
-
-
-         */
     }
 
     @Override

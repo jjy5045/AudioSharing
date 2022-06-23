@@ -40,9 +40,13 @@ public class ProductListService {
 	
 	@Transactional
 	public ProductList save(ProductListValue value) {
+		
 		ProductList productList = ProductList.builder()
-				.proListType(value.getProListType())
 				.proListName(value.getProListName())
+				.proListCategory(value.getProListCategory())
+				.proListLine(value.getProListLine())
+				.proListType(value.getProListType())
+				.proListWearingType(value.getProListWearingType())
 				.proListCompany(value.getProListCompany())
 				.proListText(value.getProListText())
 				.proListRentPrice(value.getProListRentPrice())
